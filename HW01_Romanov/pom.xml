@@ -2,14 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>OtusJavaRomanovHW</artifactId>
+        <groupId>ru.otus</groupId>
+        <version>2019-12-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
-
-
-<parent>
-    <groupId>ru.otus</groupId>
-    <artifactId>OtusJavaRomanov</artifactId>
-    <version>2019-12-SNAPSHOT</version>
-</parent>
 
     <artifactId>HW01_Romanov</artifactId>
     <name>HW01_Romanov</name>
@@ -29,7 +27,7 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>mavne-assembly-plugin</artifactId>
+                <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
