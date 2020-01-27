@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="HW03_GC" />
         <module name="HW01_Romanov" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="HW01_Romanov" target="13" />
+      <module name="HW03_GC" target="13" />
       <module name="otus_java_2019_12" target="13" />
     </bytecodeTargetLevel>
   </component>

@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/Desktop/otus_java_2019_12/HW01_Romanov/HW01_Romanov.iml" filepath="$USER_HOME$/Desktop/otus_java_2019_12/HW01_Romanov/HW01_Romanov.iml" />
-      <module fileurl="file://$USER_HOME$/Desktop/otus_java_2019_12/otus_java_2019_12.iml" filepath="$USER_HOME$/Desktop/otus_java_2019_12/otus_java_2019_12.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HW01_Romanov/HW01_Romanov.iml" filepath="$PROJECT_DIR$/HW01_Romanov/HW01_Romanov.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HW03_GC/HW03_GC.iml" filepath="$PROJECT_DIR$/HW03_GC/HW03_GC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/otus_java_2019_12.iml" filepath="$PROJECT_DIR$/otus_java_2019_12.iml" />
     </modules>
   </component>
 </project>
