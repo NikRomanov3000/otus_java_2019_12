@@ -6,7 +6,8 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$USER_HOME$/Desktop/otus_java_2019_12/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/HW02_DIYList/pom.xml" />
       </list>
     </option>
   </component>
