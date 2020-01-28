@@ -11,9 +11,10 @@ public class DIYArrayList<T> implements List<T> {
     private int size=0;//pointer
     private String INVALID_SIZE = "Invalid list size";
     private Object[] myArray;
-    private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA={};
+  // private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA={};
 
     public DIYArrayList() {
+        Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA={}; //добавил создание пустого массива в конструктор, чтобы он только создавался при вызове данного конструктора, аналогично сдела в public DIYArrayList(Collection<? extends T> c)
         this.myArray=DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
     }
 
@@ -30,7 +31,10 @@ public class DIYArrayList<T> implements List<T> {
             if (myArray.getClass() != Object[].class)
                 myArray=Arrays.copyOf(myArray, size, Object[].class);
         }
-        else this.myArray=DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
+        else {
+            Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA={}; //Создаем объект, только при попадании в блок else
+            this.myArray= DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
+        }
     }
 
     private void indexCheck(int index, int maxIndex){
@@ -87,7 +91,9 @@ public class DIYArrayList<T> implements List<T> {
     @Override
     public void add(int index, T element) {
         indexCheck(index, size+1);
+        if (index+1>size)
         ensureSize(size+1);
+
         myArray[index+1]=element;
         size++;
     }
@@ -103,6 +109,8 @@ public class DIYArrayList<T> implements List<T> {
         indexCheck(index);
         Object[] arr=c.toArray();
         int newNum=arr.length;
+
+        if(arr.length>size-index) //Добавил проверку, чтобы лишний раз не вызывать метод.
         ensureSize(size+newNum);
 
         int numMoved = size-index;
@@ -173,7 +181,7 @@ public class DIYArrayList<T> implements List<T> {
         for(Object elm:c)
             if(!contains(elm))
                 return false;
-        return true;
+            return true;
     }
 
 
