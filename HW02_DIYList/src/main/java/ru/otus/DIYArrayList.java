@@ -5,17 +5,16 @@ import java.util.*;
 
 
 public class DIYArrayList<T> implements List<T> {
-    private final int INIT_SIZE = 10;
+    private final int INIT_SIZE = 20;
     private int resize_fract=2;
     private static int max_array_size=Integer.MAX_VALUE-8;
     private int size=0;//pointer
     private String INVALID_SIZE = "Invalid list size";
     private Object[] myArray;
-  // private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA={};
 
     public DIYArrayList() {
-        Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA={}; //добавил создание пустого массива в конструктор, чтобы он только создавался при вызове данного конструктора, аналогично сдела в public DIYArrayList(Collection<? extends T> c)
-        this.myArray=DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
+        Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA=new Object[INIT_SIZE]; //добавил создание массива дефолтного размера в конструктор, чтобы он только создавался при вызове данного конструктора, аналогично сдела в public DIYArrayList(Collection<? extends T> c)
+        this.myArray= DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
     }
 
     public DIYArrayList(int initCapacity){
@@ -32,7 +31,7 @@ public class DIYArrayList<T> implements List<T> {
                 myArray=Arrays.copyOf(myArray, size, Object[].class);
         }
         else {
-            Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA={}; //Создаем объект, только при попадании в блок else
+            Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA=new Object[INIT_SIZE]; //Создаем объект, только при попадании в блок else
             this.myArray= DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
         }
     }
@@ -48,7 +47,8 @@ public class DIYArrayList<T> implements List<T> {
 
 
     private int getNewArraySize(int capacity){
-        int newCapacity=myArray.length/resize_fract +myArray.length;
+        int someRate=1/resize_fract;
+        int newCapacity=myArray.length*(someRate+1);
         if(newCapacity<0)
             newCapacity=capacity;
         if(newCapacity - max_array_size>0)
