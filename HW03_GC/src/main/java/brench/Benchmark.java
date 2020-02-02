@@ -18,12 +18,12 @@ public class Benchmark implements BenchmarkMBean {
             int localSize=size;
             List<Integer> testList = new ArrayList<>();
 
-            for(int j=0; j<localSize; j++);
-            testList.add(new Integer(9));
-            if(i%2==0){
-                testList.remove(i);
+            for(int j=0; j<localSize; j++) {
+                testList.add(9);
+                if (j % 2 == 0) {
+                    testList.remove(j);
+                }
             }
-
             Thread.sleep(10);
         }
     }
