@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="36eef82b-1afa-4f83-93a5-f402f60cdf57" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_failureaccess_1_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_listenablefuture_9999_0_empty_to_avoid_conflict_with_guava.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HW01_Romanov/HW01_Romanov.iml" beforeDir="false" afterPath="$PROJECT_DIR$/HW01_Romanov/HW01_Romanov.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HW03_GC/src/main/java/brench/Benchmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW03_GC/src/main/java/ru/otus/gc/brench/Benchmark.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HW03_GC/src/main/java/brench/BenchmarkMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW03_GC/src/main/java/ru/otus/gc/brench/BenchmarkMBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HW03_GC/src/main/java/brench/Report.md" beforeDir="false" afterPath="$PROJECT_DIR$/HW03_GC/src/main/java/ru/otus/gc/brench/Report.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HW03_GC/src/main/java/brench/TestGC.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW03_GC/src/main/java/ru/otus/gc/brench/TestGC.java" afterDir="false" />
-    </list>
+    <list default="true" id="36eef82b-1afa-4f83-93a5-f402f60cdf57" name="Default Changelist" comment="try 1" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +52,7 @@
     <option name="jreName" value="13" />
   </component>
   <component name="ProjectId" id="1W2R56aDILUwNGTs4pDuYRPvaSa" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -111,12 +99,13 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.TestGC">
-    <configuration name="TestGC" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="brench.TestGC" />
+    <configuration name="TestGC" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="ru.otus.gc.brench.TestGC" />
       <module name="HW03_GC" />
+      <option name="VM_PARAMETERS" value="-Xms512m -Xmx512m -Xlog:gc=debug:file=./HW03_GC/logs/gc-%p-%t.log:tags,uptime,time,level:filecount=5,filesize=10m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=./logs/dump -XX:+UnlockExperimentalVMOptions -XX:+UseZGC" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="brench.*" />
+          <option name="PATTERN" value="ru.otus.gc.brench.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -207,6 +196,7 @@
       <list>
         <item itemvalue="Application.TestGC" />
         <item itemvalue="Application.TestGC" />
+        <item itemvalue="Application.TestGC" />
       </list>
     </recent_temporary>
   </component>
@@ -229,7 +219,7 @@
       <workItem from="1578420641289" duration="62000" />
       <workItem from="1579544272862" duration="3797000" />
       <workItem from="1580151885174" duration="3623000" />
-      <workItem from="1580754198363" duration="10084000" />
+      <workItem from="1580754198363" duration="10401000" />
     </task>
     <task id="LOCAL-00001" summary="try 1">
       <created>1578404609881</created>
@@ -259,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580152337730</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="try 1">
+      <created>1580764702208</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1580764702208</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
