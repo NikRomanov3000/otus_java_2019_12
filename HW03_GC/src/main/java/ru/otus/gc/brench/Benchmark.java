@@ -1,4 +1,4 @@
-package brench;
+package ru.otus.gc.brench;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +20,9 @@ public class Benchmark implements BenchmarkMBean {
 
             for(int j=0; j<localSize; j++) {
                 testList.add(9);
-                if (j % 2 == 0) {
-                    testList.remove(j);
-                }
+            }
+            if (i % 2 == 0) {
+                testList.remove(i);
             }
             Thread.sleep(10);
         }

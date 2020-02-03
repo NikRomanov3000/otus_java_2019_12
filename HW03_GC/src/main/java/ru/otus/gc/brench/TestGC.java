@@ -1,4 +1,4 @@
-package brench;
+package ru.otus.gc.brench;
 
 import com.sun.management.GarbageCollectionNotificationInfo;
 
@@ -9,23 +9,42 @@ import javax.management.ObjectName;
 import javax.management.openmbean.CompositeData;
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
-import java.util.ArrayList;
 import java.util.List;
+/*
+-Xms512m
+-Xmx512m
+-Xlog:gc=debug:file=.HW03_GC/logs/gc-%p-%t.log:tags,uptime,time,level:filecount=5,filesize=10m
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:HeapDumpPath=./logs/dump
+-XX:+UseG1GC
 
+Прогоны с примерами из урока
+1) UseG1GC; time: 81
+2) MaxGCPauseMillis= 100000; time: 109
+3) MaxGCPauseMillis=10; time: 92
+4) UseParallelGC; time: 41
+5) UseSerialGC; time: 39
+6) UseConcMarkSweepGC; time: 40
+7) UnlockExperimentalVMOptions; time: 81
+ */
 public class TestGC {
     public static void main(String... args) throws Exception {
         System.out.println( "Starting pid: " + ManagementFactory.getRuntimeMXBean().getName() );
+        goToMonitor();
+        long beginTime=System.currentTimeMillis();
 
         int size = 5 *1000*1000;
         int loopCounter=1000;
 
         MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
-        ObjectName oName = new ObjectName("brench.Benchmark");
+        ObjectName name = new ObjectName("ru.otus:type=Benchmark");
 
         Benchmark mbean = new Benchmark(loopCounter);
-        mbs.registerMBean(mbean,oName);
+        mbs.registerMBean(mbean,name);
         mbean.setSize(size);
         mbean.run();
+
+        System.out.println("time:" + ( System.currentTimeMillis() - beginTime ) / 1000 );
 
     }
 
@@ -36,7 +55,7 @@ public class TestGC {
         for ( GarbageCollectorMXBean gcbean : gcbeans ) {
             System.out.println( "GC name:" + gcbean.getName() );
             NotificationEmitter emitter = (NotificationEmitter) gcbean;
-            NotificationListener listener = (notification, handback ) -> {
+            NotificationListener listener = ( notification, handback ) -> {
                 if ( notification.getType().equals( GarbageCollectionNotificationInfo.GARBAGE_COLLECTION_NOTIFICATION ) ) {
                     GarbageCollectionNotificationInfo info = GarbageCollectionNotificationInfo.from( (CompositeData) notification.getUserData() );
                     String gcName = info.getGcName();
