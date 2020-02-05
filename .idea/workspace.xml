@@ -1,57 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="36eef82b-1afa-4f83-93a5-f402f60cdf57" name="Default Changelist" comment="try 1" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="6419a4f8-779e-4237-b889-dcdef31c17c2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="hw02-DIYArrayList" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-        <option name="jdkForImporter" value="13" />
-        <option name="vmOptionsForImporter" value="-Xmx768m" />
-      </MavenImportingSettings>
-    </option>
-  </component>
-  <component name="MavenRunner">
-    <option name="jreName" value="13" />
-  </component>
-  <component name="ProjectId" id="1W2R56aDILUwNGTs4pDuYRPvaSa" />
+  <component name="ProjectId" id="1XNrTWGqDWJ176Ka0D7TG1eXjLR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -59,268 +26,37 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.18485238" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\User\Desktop\otus_java_2019_12" />
-      <recent name="C:\Users\User\IdeaProjects\otus_java_2019_12" />
-      <recent name="C:\Users\User\IdeaProjects\otus_java_2019_12\HW01_Romanov" />
-    </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Application.TestGC">
-    <configuration name="TestGC" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="ru.otus.gc.brench.TestGC" />
-      <module name="HW03_GC" />
-      <option name="VM_PARAMETERS" value="-Xms512m -Xmx512m -Xlog:gc=debug:file=./HW03_GC/logs/gc-%p-%t.log:tags,uptime,time,level:filecount=5,filesize=10m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=./logs/dump -XX:+UnlockExperimentalVMOptions -XX:+UseZGC" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.otus.gc.brench.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestGC" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="ru.otus.gc.brench.TestGC" />
-      <module name="HW03_GC" />
-      <option name="VM_PARAMETERS" value="-Xms512m -Xmx512m -Xlog:gc=debug:file=./HW03_GC/logs/gc-%p-%t.log:tags,uptime,time,level:filecount=5,filesize=10m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=./logs/dump -XX:+UnlockExperimentalVMOptions -XX:+UseZGC" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.otus.gc.brench.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Maven" type="MavenRunConfiguration" factoryName="Maven">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings">
-          <MavenRunnerSettings>
-            <option name="delegateBuildToMaven" value="false" />
-            <option name="environmentProperties">
-              <map />
-            </option>
-            <option name="jreName" value="13" />
-            <option name="mavenProperties">
-              <map />
-            </option>
-            <option name="passParentEnv" value="true" />
-            <option name="runMavenInBackground" value="true" />
-            <option name="skipTests" value="false" />
-            <option name="vmOptions" value="" />
-          </MavenRunnerSettings>
-        </option>
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list />
-            </option>
-            <option name="pomFileName" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list />
-            </option>
-            <option name="pomFileName" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Application.TestGC" />
-      <item itemvalue="Maven.Maven" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.TestGC" />
-        <item itemvalue="Application.TestGC" />
-        <item itemvalue="Application.TestGC" />
-      </list>
-    </recent_temporary>
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/HW03_GC" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="36eef82b-1afa-4f83-93a5-f402f60cdf57" name="Default Changelist" comment="" />
-      <created>1578345517518</created>
+      <changelist id="6419a4f8-779e-4237-b889-dcdef31c17c2" name="Default Changelist" comment="" />
+      <created>1580897400960</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1578345517518</updated>
-      <workItem from="1578345522713" duration="1459000" />
-      <workItem from="1578347474185" duration="351000" />
-      <workItem from="1578397618929" duration="7311000" />
-      <workItem from="1578412348471" duration="3491000" />
-      <workItem from="1578416049524" duration="1227000" />
-      <workItem from="1578419569316" duration="1026000" />
-      <workItem from="1578420641289" duration="62000" />
-      <workItem from="1579544272862" duration="3797000" />
-      <workItem from="1580151885174" duration="3623000" />
-      <workItem from="1580754198363" duration="10401000" />
+      <updated>1580897400960</updated>
+      <workItem from="1580897404628" duration="205000" />
+      <workItem from="1580897619851" duration="23000" />
     </task>
-    <task id="LOCAL-00001" summary="try 1">
-      <created>1578404609881</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1578404609881</updated>
-    </task>
-    <task id="LOCAL-00002" summary="try 1">
-      <created>1578404788504</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1578404788504</updated>
-    </task>
-    <task id="LOCAL-00003" summary="try 1">
-      <created>1578414872954</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1578414872955</updated>
-    </task>
-    <task id="LOCAL-00004" summary="try 1">
-      <created>1580152337730</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1580152337730</updated>
-    </task>
-    <task id="LOCAL-00005" summary="try 1">
-      <created>1580764702208</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1580764702208</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="try 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="try 1" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="449" y="63" key="#Inspections" />
-    <state x="449" y="63" key="#Inspections/0.0.1536.824@0.0.1536.824" />
-    <state x="361" y="72" key="#Project_Structure" />
-    <state x="361" y="72" key="#Project_Structure/0.0.1536.824@0.0.1536.824" />
-    <state x="223" y="50" width="1089" height="774" key="#com.intellij.execution.impl.EditConfigurationsDialog" />
-    <state x="223" y="50" width="1089" height="774" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" />
-    <state x="574" y="123" key="#com.intellij.ide.util.MemberChooser" />
-    <state x="574" y="123" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" />
-    <state x="575" y="0" key="CommitChangelistDialog2" />
-    <state x="575" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" />
-    <state x="266" y="162" key="FileChooserDialogImpl" />
-    <state x="266" y="162" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" />
-    <state width="1493" height="260" key="GridCell.Tab.0.bottom" />
-    <state width="1493" height="260" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" />
-    <state width="1493" height="260" key="GridCell.Tab.0.center" />
-    <state width="1493" height="260" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" />
-    <state width="1493" height="260" key="GridCell.Tab.0.left" />
-    <state width="1493" height="260" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" />
-    <state width="1493" height="260" key="GridCell.Tab.0.right" />
-    <state width="1493" height="260" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" />
-    <state width="1493" height="260" key="GridCell.Tab.1.bottom" />
-    <state width="1493" height="260" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" />
-    <state width="1493" height="260" key="GridCell.Tab.1.center" />
-    <state width="1493" height="260" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" />
-    <state width="1493" height="260" key="GridCell.Tab.1.left" />
-    <state width="1493" height="260" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" />
-    <state width="1493" height="260" key="GridCell.Tab.1.right" />
-    <state width="1493" height="260" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" />
-    <state x="387" y="59" key="Maven.ArtifactSearchDialog" />
-    <state x="387" y="59" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" />
-    <state x="249" y="0" key="SettingsEditor" />
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" />
-    <state x="383" y="169" key="Vcs.Push.Dialog.v2" />
-    <state x="383" y="169" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" />
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" />
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" />
-    <state x="498" y="307" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" />
-    <state x="498" y="307" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" />
-    <state x="209" y="34" key="new project wizard" />
-    <state x="209" y="34" key="new project wizard/0.0.1536.824@0.0.1536.824" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" />
+    <state x="873" y="319" key="FileChooserDialogImpl" timestamp="1580897640292">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="873" y="319" key="FileChooserDialogImpl/1920.230.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1580897640292" />
+    <state x="789" y="388" key="com.intellij.ide.util.TipDialog" timestamp="1580897440017">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="789" y="388" key="com.intellij.ide.util.TipDialog/1920.230.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1580897440017" />
   </component>
 </project>
