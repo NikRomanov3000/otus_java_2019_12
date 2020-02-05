@@ -11,21 +11,19 @@ import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
 import java.util.List;
 /*
--Xms512m
--Xmx512m
--Xlog:gc=debug:file=.HW03_GC/logs/gc-%p-%t.log:tags,uptime,time,level:filecount=5,filesize=10m
+-Xms2048m
+-Xmx2048m
+-Xlog:gc=debug:file=./logs/gc-%p-%t.log:tags,uptime,time,level:filecount=5,filesize=10m
 -XX:+HeapDumpOnOutOfMemoryError
 -XX:HeapDumpPath=./logs/dump
 -XX:+UseG1GC
 
 Прогоны с примерами из урока
-1) UseG1GC; time: 81
-2) MaxGCPauseMillis= 100000; time: 109
-3) MaxGCPauseMillis=10; time: 92
-4) UseParallelGC; time: 41
-5) UseSerialGC; time: 39
-6) UseConcMarkSweepGC; time: 40
-7) UnlockExperimentalVMOptions; time: 81
+1) UseG1GC; time: 103, time2: 352
+2) Using Parallel GC; time: 36; time2: 153
+3) Using Serial GC; time: 35; time: 151
+4) Using ConcMark Sweep GC; time: 37; time2: 160
+
  */
 public class TestGC {
     public static void main(String... args) throws Exception {
@@ -33,8 +31,8 @@ public class TestGC {
         goToMonitor();
         long beginTime=System.currentTimeMillis();
 
-        int size = 5 *1000*1000;
-        int loopCounter=1000;
+        int size = 6 *1000*1000;
+        int loopCounter=4000;
 
         MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
         ObjectName name = new ObjectName("ru.otus:type=Benchmark");
