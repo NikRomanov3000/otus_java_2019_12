@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6419a4f8-779e-4237-b889-dcdef31c17c2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="6419a4f8-779e-4237-b889-dcdef31c17c2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +26,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/HW03_GC" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -43,6 +44,7 @@
       <updated>1580897400960</updated>
       <workItem from="1580897404628" duration="205000" />
       <workItem from="1580897619851" duration="23000" />
+      <workItem from="1580897783282" duration="30000" />
     </task>
     <servers />
   </component>
@@ -54,6 +56,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="873" y="319" key="FileChooserDialogImpl/1920.230.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1580897640292" />
+    <state x="594" y="191" key="SettingsEditor" timestamp="1580897812091">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="594" y="191" key="SettingsEditor/1920.230.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1580897812091" />
     <state x="789" y="388" key="com.intellij.ide.util.TipDialog" timestamp="1580897440017">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
