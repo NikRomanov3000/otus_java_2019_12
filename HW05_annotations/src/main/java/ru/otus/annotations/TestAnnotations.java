@@ -1,7 +1,7 @@
 package ru.otus.annotations;
 
 public class TestAnnotations {
-Integer count;
+
     @Before
     public void testMethodTwo() {
     }
