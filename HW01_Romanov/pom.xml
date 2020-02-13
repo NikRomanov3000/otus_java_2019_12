@@ -34,7 +34,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>ru.otus.hw01.HelloOtus</mainClass>
+                            <mainClass>ru.otus.atm.hw01.HelloOtus</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

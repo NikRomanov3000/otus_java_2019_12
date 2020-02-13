@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HW01_Romanov/HW01_Romanov.iml" filepath="$PROJECT_DIR$/HW01_Romanov/HW01_Romanov.iml" />
       <module fileurl="file://$PROJECT_DIR$/HW03_GC/HW03_GC.iml" filepath="$PROJECT_DIR$/HW03_GC/HW03_GC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HW05_annotations/HW05_annotations.iml" filepath="$PROJECT_DIR$/HW05_annotations/HW05_annotations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HW06-myATM/HW06-myATM.iml" filepath="$PROJECT_DIR$/HW06-myATM/HW06-myATM.iml" />
       <module fileurl="file://$PROJECT_DIR$/otus_java_2019_12.iml" filepath="$PROJECT_DIR$/otus_java_2019_12.iml" />
     </modules>
   </component>

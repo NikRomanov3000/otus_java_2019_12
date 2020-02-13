@@ -1,14 +1,11 @@
-package ru.otus.annotations;
+package ru.otus.atm.annotations;
 
-import ru.otus.annotations.myAnnotations.After;
-import ru.otus.annotations.myAnnotations.Before;
-import ru.otus.annotations.myAnnotations.Test;
+import ru.otus.atm.annotations.myAnnotations.After;
+import ru.otus.atm.annotations.myAnnotations.Before;
+import ru.otus.atm.annotations.myAnnotations.Test;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.concurrent.ExecutionException;
 
 public class ReflectionHelper {
 

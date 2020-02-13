@@ -1,4 +1,4 @@
-package ru.otus.gc.brench;
+package ru.otus.atm.gc.brench;
 
 public interface BenchmarkMBean {
     int getSize();

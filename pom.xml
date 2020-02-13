@@ -23,6 +23,7 @@
         <module>HW01_Romanov</module>
         <module>HW03_GC</module>
         <module>HW05_annotations</module>
+        <module>HW06-myATM</module>
     </modules>
 
     <properties>

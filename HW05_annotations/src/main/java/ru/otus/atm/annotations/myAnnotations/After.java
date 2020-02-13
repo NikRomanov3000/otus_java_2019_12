@@ -1,4 +1,4 @@
-package ru.otus.annotations.myAnnotations;
+package ru.otus.atm.annotations.myAnnotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,4 +7,4 @@ import java.lang.annotation.Target;
 
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.METHOD)
-    public @interface Before{}
+    public @interface After{}

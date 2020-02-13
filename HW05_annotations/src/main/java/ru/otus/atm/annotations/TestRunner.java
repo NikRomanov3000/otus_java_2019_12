@@ -1,6 +1,4 @@
-package ru.otus.annotations;
-
-import java.lang.reflect.InvocationTargetException;
+package ru.otus.atm.annotations;
 
 public class TestRunner {
     public void runTest() throws Exception {

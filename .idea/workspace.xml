@@ -2,12 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87809c83-0dac-446f-a9b7-a4522399f78b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/HW06-myATM/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW06-myATM/src/main/java/myATM.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW06-myATM/src/main/java/ru/otus/atm/ATMinterface/ATM.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW06-myATM/src/main/java/ru/otus/atm/ATMinterface/CardHolder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW06-myATM/src/main/java/ru/otus/atm/Banknote.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW06-myATM/src/main/java/ru/otus/atm/Money.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW06-myATM/src/main/java/ru/otus/atm/myCardHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW01_Romanov/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/HW01_Romanov/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW01_Romanov/src/main/java/ru/otus/hw01/HelloOtus.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW01_Romanov/src/main/java/ru/otus/atm/hw01/HelloOtus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW03_GC/src/main/java/ru/otus/gc/brench/Benchmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW03_GC/src/main/java/ru/otus/atm/gc/brench/Benchmark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW03_GC/src/main/java/ru/otus/gc/brench/BenchmarkMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW03_GC/src/main/java/ru/otus/atm/gc/brench/BenchmarkMBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW03_GC/src/main/java/ru/otus/gc/brench/Report.md" beforeDir="false" afterPath="$PROJECT_DIR$/HW03_GC/src/main/java/ru/otus/atm/gc/brench/Report.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW03_GC/src/main/java/ru/otus/gc/brench/TestGC.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW03_GC/src/main/java/ru/otus/atm/gc/brench/TestGC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW05_annotations/src/main/java/ru/otus/annotations/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW05_annotations/src/main/java/ru/otus/atm/annotations/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW05_annotations/src/main/java/ru/otus/annotations/ReflectionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW05_annotations/src/main/java/ru/otus/atm/annotations/ReflectionHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW05_annotations/src/main/java/ru/otus/annotations/TestAnnotations.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW05_annotations/src/main/java/ru/otus/atm/annotations/TestAnnotations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW05_annotations/src/main/java/ru/otus/annotations/TestRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW05_annotations/src/main/java/ru/otus/atm/annotations/TestRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW05_annotations/src/main/java/ru/otus/annotations/myAnnotations/After.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW05_annotations/src/main/java/ru/otus/atm/annotations/myAnnotations/After.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW05_annotations/src/main/java/ru/otus/annotations/myAnnotations/Before.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW05_annotations/src/main/java/ru/otus/atm/annotations/myAnnotations/Before.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW05_annotations/src/main/java/ru/otus/annotations/myAnnotations/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW05_annotations/src/main/java/ru/otus/atm/annotations/myAnnotations/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -28,7 +61,23 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/HW05_annotations" />
+    <property name="jdk.selected.JAVA_MODULE" value="13" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.18870346" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -42,11 +91,23 @@
       <updated>1581593682408</updated>
       <workItem from="1581593687738" duration="57000" />
       <workItem from="1581593783574" duration="15000" />
+      <workItem from="1581625309274" duration="1874000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1581593796723">

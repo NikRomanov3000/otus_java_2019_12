@@ -1,4 +1,4 @@
-package ru.otus.gc.brench;
+package ru.otus.atm.gc.brench;
 
 import java.util.ArrayList;
 import java.util.List;
