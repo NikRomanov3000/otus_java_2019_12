@@ -1,5 +1,9 @@
 package ru.otus.annotations;
 
+import ru.otus.annotations.myAnnotations.After;
+import ru.otus.annotations.myAnnotations.Before;
+import ru.otus.annotations.myAnnotations.Test;
+
 public class TestAnnotations {
 
     @Before

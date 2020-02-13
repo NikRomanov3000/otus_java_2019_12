@@ -1,44 +1,65 @@
 package ru.otus.annotations;
 
+import ru.otus.annotations.myAnnotations.After;
+import ru.otus.annotations.myAnnotations.Before;
+import ru.otus.annotations.myAnnotations.Test;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class ReflectionHelper {
 
-    public static  <T> Set<Method> findAnnotationsMethodsByName(String className, Class<? extends Annotation>... annotations) throws ClassNotFoundException {
+    private <T> List<Set> findAnnotationsMethodsByName(String className) throws ClassNotFoundException {
         Class<?> testClass = Class.forName(className);
-        Set<Method> methods = new LinkedHashSet<>();
+        Set<Method> beforeMethods = new LinkedHashSet<>();
+        Set<Method> testMethods = new LinkedHashSet<>();
+        Set<Method> afterMethods = new LinkedHashSet<>();
 
         for(Method method : testClass.getMethods()){
-            for(Class<? extends Annotation> annotation : annotations){
-                if(method.isAnnotationPresent(annotation)){
-                    methods.add(method);
-                    break;
-                }
+            if(method.isAnnotationPresent(Before.class)){
+                    beforeMethods.add(method);
+            }
+            if(method.isAnnotationPresent(After.class)){
+                afterMethods.add(method);
+            }
+            if(method.equals(Test.class)){
+                testMethods.add(method);
             }
         }
-        return methods;
+
+        List<Set> resultSet= new LinkedList<>();
+        resultSet.add(beforeMethods);
+        resultSet.add(testMethods);
+        resultSet.add(afterMethods);
+
+        return resultSet;
     }
 
-    public static void execAnnotationsMethods(String className, Set<Class<? extends Annotation>> annotations) throws ClassNotFoundException {
+    public void execAnnotationsMethods(String className) throws ClassNotFoundException, InvocationTargetException, IllegalAccessException {
+        List<Set> setWithAnnotationsMethods=findAnnotationsMethodsByName(className);
+       Set<Method> beforeMethods=setWithAnnotationsMethods.get(1);
+       Set<Method> testMethods=setWithAnnotationsMethods.get(2);
+       Set<Method> afterMethods=setWithAnnotationsMethods.get(3);
 
-        for (Iterator iter = annotations.iterator(); iter.hasNext();) {
+        for (Iterator iter = beforeMethods.iterator(); iter.hasNext();) {
 
-            Set<Method> methodsWithAnnotations = findAnnotationsMethodsByName(className, (Class<? extends Annotation>) iter.next());
-            methodsWithAnnotations.forEach(method -> {
-                try {
-                    method.invoke(TestAnnotations.class, null);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                }
+            for (Method beforeMethod : beforeMethods) {
+                beforeMethod.invoke(TestAnnotations.class, null);
+            }
+        }
+        for (Iterator iter = afterMethods.iterator(); iter.hasNext();) {
 
-            });
+            for (Method afterMethod : afterMethods) {
+                afterMethod.invoke(TestAnnotations.class, null);
+            }
+        }
+        for (Iterator iter = beforeMethods.iterator(); iter.hasNext();) {
+
+            for (Method testMethod : testMethods) {
+                testMethod.invoke(TestAnnotations.class, null);
+            }
         }
     }
 }

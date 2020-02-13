@@ -1,17 +1,10 @@
 package ru.otus.annotations;
 
-import java.lang.annotation.Annotation;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.lang.reflect.InvocationTargetException;
 
 public class TestRunner {
-    public void runTest() throws ClassNotFoundException {
-        Set<Class<? extends Annotation>> annotationsForSearch = new LinkedHashSet<>();
-        annotationsForSearch.add(Before.class);
-        annotationsForSearch.add(Test.class);
-        annotationsForSearch.add(After.class);
-
+    public void runTest() throws ClassNotFoundException, InvocationTargetException, IllegalAccessException {
         ReflectionHelper reflectionHelper = new ReflectionHelper();
-        reflectionHelper.execAnnotationsMethods(TestAnnotations.class.getName(),annotationsForSearch );
+        reflectionHelper.execAnnotationsMethods(TestAnnotations.class.getName());
     }
 }
