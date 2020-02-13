@@ -8,6 +8,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 
 public class ReflectionHelper {
 
@@ -37,7 +38,7 @@ public class ReflectionHelper {
         return resultSet;
     }
 
-    public void execAnnotationsMethods(String className) throws ClassNotFoundException, InvocationTargetException, IllegalAccessException {
+    public void execAnnotationsMethods(String className) throws Exception {
         List<Set> setWithAnnotationsMethods=findAnnotationsMethodsByName(className);
        Set<Method> beforeMethods=setWithAnnotationsMethods.get(1);
        Set<Method> testMethods=setWithAnnotationsMethods.get(2);
@@ -46,19 +47,31 @@ public class ReflectionHelper {
         for (Iterator iter = beforeMethods.iterator(); iter.hasNext();) {
 
             for (Method beforeMethod : beforeMethods) {
-                beforeMethod.invoke(TestAnnotations.class, null);
+                try {beforeMethod.invoke(TestAnnotations.class, null);
+                } catch (Exception e){
+                    throw new Exception("Exception in before method");
+                }
+
             }
         }
         for (Iterator iter = afterMethods.iterator(); iter.hasNext();) {
 
             for (Method afterMethod : afterMethods) {
-                afterMethod.invoke(TestAnnotations.class, null);
+                try {
+                    afterMethod.invoke(TestAnnotations.class, null);
+                } catch (Exception e){
+                    throw new Exception("Exception in after method");
+                }
             }
         }
         for (Iterator iter = beforeMethods.iterator(); iter.hasNext();) {
 
             for (Method testMethod : testMethods) {
-                testMethod.invoke(TestAnnotations.class, null);
+                try {
+                    testMethod.invoke(TestAnnotations.class, null);
+                } catch  (Exception e){
+                    throw new Exception("Exception in test method");
+                }
             }
         }
     }
