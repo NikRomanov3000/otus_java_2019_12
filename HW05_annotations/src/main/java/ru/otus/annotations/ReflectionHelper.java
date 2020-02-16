@@ -11,8 +11,24 @@ import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public class ReflectionHelper {
+    int countOfSuccessBeforeMethods;
+    int countOfSuccessTestMethods;
+    int countOfSuccessAfterMethods;
 
-    private <T> List<Set> findAnnotationsMethodsByName(String className) throws ClassNotFoundException {
+    int countOfFailBeforeMethods;
+    int countOfFailTestMethods;
+    int countOfFailAfterMethods;
+
+    public ReflectionHelper(){
+        int countOfSuccessBeforeMethods = 0;
+        int countOfSuccessTestMethods = 0;
+        int countOfSuccessAfterMethods = 0;
+        int countOfFailBeforeMethods = 0;
+        int countOfFailTestMethods = 0;
+        int countOfFailAfterMethods = 0;
+    }
+
+    private <T> Map<Class, Set<Method>> findAnnotationsMethodsByName(String className) throws ClassNotFoundException {
         Class<?> testClass = Class.forName(className);
         Set<Method> beforeMethods = new LinkedHashSet<>();
         Set<Method> testMethods = new LinkedHashSet<>();
@@ -25,54 +41,71 @@ public class ReflectionHelper {
             if(method.isAnnotationPresent(After.class)){
                 afterMethods.add(method);
             }
-            if(method.equals(Test.class)){
+            if(method.isAnnotationPresent(Test.class)){
                 testMethods.add(method);
             }
         }
 
-        List<Set> resultSet= new LinkedList<>();
-        resultSet.add(beforeMethods);
-        resultSet.add(testMethods);
-        resultSet.add(afterMethods);
+        Map<Class, Set<Method>> mapOfSets = new HashMap<>();
+        mapOfSets.put(After.class, afterMethods);
+        mapOfSets.put(Before.class, beforeMethods);
+        mapOfSets.put(Test.class, afterMethods);
 
-        return resultSet;
+        return mapOfSets;
     }
 
-    public void execAnnotationsMethods(String className) throws Exception {
-        List<Set> setWithAnnotationsMethods=findAnnotationsMethodsByName(className);
-       Set<Method> beforeMethods=setWithAnnotationsMethods.get(1);
-       Set<Method> testMethods=setWithAnnotationsMethods.get(2);
-       Set<Method> afterMethods=setWithAnnotationsMethods.get(3);
+    public Map<String, Integer> execAnnotationsMethods(String className) throws Exception {
+     Class<?> testClass = Class.forName(className);
+     Map<Class, Set<Method>> mapOfSets = findAnnotationsMethodsByName(className);
 
-        for (Iterator iter = beforeMethods.iterator(); iter.hasNext();) {
+        //Before
+        Set<Method> beforeMethods = mapOfSets.get(Before.class);
 
-            for (Method beforeMethod : beforeMethods) {
-                try {beforeMethod.invoke(TestAnnotations.class, null);
-                } catch (Exception e){
-                    throw new Exception("Exception in before method");
-                }
-
+        for(Method method : beforeMethods){
+            try {
+                method.invoke(testClass.newInstance(),null);
+                countOfSuccessBeforeMethods++;
+            } catch (Exception e){
+                countOfFailBeforeMethods++;
+                throw new Exception("Exception in before method");
             }
-        }
-        for (Iterator iter = afterMethods.iterator(); iter.hasNext();) {
 
-            for (Method afterMethod : afterMethods) {
-                try {
-                    afterMethod.invoke(TestAnnotations.class, null);
-                } catch (Exception e){
-                    throw new Exception("Exception in after method");
-                }
-            }
         }
-        for (Iterator iter = beforeMethods.iterator(); iter.hasNext();) {
 
-            for (Method testMethod : testMethods) {
-                try {
-                    testMethod.invoke(TestAnnotations.class, null);
-                } catch  (Exception e){
-                    throw new Exception("Exception in test method");
-                }
-            }
-        }
+        //Test
+        Set<Method> testMethods = mapOfSets.get(Test.class);
+       for (Method method : testMethods){
+           try {
+               method.invoke(testClass.newInstance(), null);
+               countOfSuccessTestMethods++;
+           } catch (Exception e){
+               countOfFailTestMethods++;
+               throw new Exception("Exception in test method");
+           }
+
+       }
+
+        //After
+        Set<Method> afterMethods = mapOfSets.get(After.class);
+       for(Method method : afterMethods){
+           try {
+               method.invoke(testClass.newInstance(), null);
+               countOfSuccessAfterMethods++;
+           } catch (Exception e){
+               countOfFailAfterMethods++;
+               throw new Exception("Exception in test method");
+           }
+
+       }
+
+       Map<String, Integer> statistics = new HashMap<>();
+       statistics.put("Success before methods" ,countOfSuccessBeforeMethods);
+       statistics.put("Success test methods", countOfSuccessTestMethods);
+       statistics.put("Success after methods",countOfSuccessAfterMethods);
+       statistics.put("Fail before methods", countOfFailBeforeMethods);
+       statistics.put("Fail test methods",countOfFailTestMethods);
+       statistics.put("Fail after methods", countOfFailAfterMethods);
+
+       return statistics;
     }
 }
