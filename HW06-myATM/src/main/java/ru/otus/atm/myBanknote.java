@@ -1,16 +1,16 @@
-package ru.otus.atm.banknote;
+package ru.otus.atm;
 
 import ru.otus.atm.ATMinterface.Banknote;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Banknote5000 implements Banknote {
-    private final int denomination=5000 ;
+public class myBanknote implements ru.otus.atm.ATMinterface.Banknote {
+    private final int denomination;
     private final int serialNumber;
 
-    public Banknote5000() {
+    public myBanknote(int denomination ) {
         this.serialNumber = ThreadLocalRandom.current().nextInt(0, 1000000 );
+        this.denomination = denomination;
     }
 
     @Override
@@ -23,8 +23,4 @@ public class Banknote5000 implements Banknote {
         return denomination;
     }
 
-    @Override
-    public Object getBanknote() {
-        return new  Banknote5000();
-    }
 }
