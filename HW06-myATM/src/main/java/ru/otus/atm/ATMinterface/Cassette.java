@@ -4,7 +4,8 @@ import java.util.List;
 
 public interface Cassette {
     void refreshCassette(int denomination);
-    void addBanknote();
+    void addBanknote(Banknote banknote);
     List<Banknote> getBanknotes( int requiredNumber) throws Exception;
     int getNumberOfBanknotes();
+    int getDenomination();
 }

@@ -7,23 +7,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class myCassette implements Cassette {
-    int numberOfBanknotes;
-    int denominationOfBanknote;
+    private int numberOfBanknotes;
+    private final int denominationOfBanknotes;
     List<Banknote> banknotesInCassette;
 
-    public myCassette(int denominationOfBanknote) {
+    public myCassette(int denominationOfBanknotes) {
         numberOfBanknotes = 0;
-        this.denominationOfBanknote=denominationOfBanknote;
+        this.denominationOfBanknotes=denominationOfBanknotes;
         this.banknotesInCassette = new ArrayList<>();
     }
 
     @Override
-    public void addBanknotes(int denominationOfBanknote) {
+    public int getNumberOfBanknotes() {
+
+        return numberOfBanknotes;
+    }
+
+    @Override
+    public int getDenomination() {
+        return denominationOfBanknotes;
+    }
+
+    @Override
+    public void refreshCassette(int denomination) {
         banknotesInCassette.clear();
-        for(int i=0; i<2500; i++){
-            banknotesInCassette.add(new myBanknote((denominationOfBanknote)));
+        for(int i=0; i<2500; i++){ //Про 2500 купюр прочёл в статье про устройство банкомата
+            banknotesInCassette.add(new myBanknote((denominationOfBanknotes)));
             numberOfBanknotes++;
         }
+    }
+
+    @Override
+    public void addBanknote(Banknote banknote) {
+        if(numberOfBanknotes<2500 && banknote.getDenomination()==denominationOfBanknotes){
+            banknotesInCassette.add(banknote);
+        } else System.out.println("Нет места для купюр данного номинала, обратитесь к сотруднику банка");
     }
 
     @Override
@@ -38,8 +56,4 @@ public class myCassette implements Cassette {
             return null;
     }
 
-    @Override
-    public int getNumberOfBanknotes() {
-        return numberOfBanknotes;
-    }
 }
