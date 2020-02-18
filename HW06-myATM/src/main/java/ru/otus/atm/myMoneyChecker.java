@@ -9,8 +9,6 @@ import java.util.Map;
 public class myMoneyChecker implements MoneyChecker {
     private int ATM_Balance;
 
-
-
     public myMoneyChecker() {
         this.ATM_Balance = 0;
     }

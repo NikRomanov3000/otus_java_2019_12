@@ -11,16 +11,14 @@ public class myMoneyReceiver implements MoneyReceiver {
 
     @Override
     public void addBanknoteToATM(Banknote banknote, List<myCassette> cassettes) {
-        int denomination = banknote.getDenomination();
-        myMoneyChecker myMoneyChecker = new myMoneyChecker();
-        Map<Integer, myCassette> banknoteMap = myMoneyChecker.calcBanknoteByDenomination(cassettes);// подумать над List
+       myMoneyChecker myMoneyChecker = new myMoneyChecker();
+        Map<Integer, myCassette> banknoteMap = myMoneyChecker.calcBanknoteByDenomination(cassettes);
 
         for (Map.Entry<Integer, myCassette> map : banknoteMap.entrySet()){
             if(banknote.getDenomination() == map.getKey()){
                 map.getValue().addBanknote(banknote);
             } else System.out.println("Внутренняя ошибка банкомата, обраитесь к сотруднику банка");
         }
-
 
     }
 
