@@ -8,7 +8,8 @@ public class TestAnnotations {
     Adder testAdder;
     @Before
     public void beforeMethod() {
-        testAdder = new Adder();
+       testAdder = new Adder();
+       // throw new RuntimeException();
     }
 
     @Test

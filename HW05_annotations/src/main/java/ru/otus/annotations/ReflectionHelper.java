@@ -16,8 +16,8 @@ public class ReflectionHelper {
 
 
     public ReflectionHelper(){
-        int countOfSuccessTestMethods=0;
-        int countOfFailTestMethods=0;
+         countOfSuccessTestMethods=0;
+         countOfFailTestMethods=0;
     }
 
     private  Set<Method> findAnnotationsTestMethodsByName(Class<?> testClass ) throws ClassNotFoundException {
@@ -42,7 +42,7 @@ public class ReflectionHelper {
                 }
             } else throw new RuntimeException("Больше одной аннотации @Before");
         }
-        throw new RuntimeException("Аннотации @Before не найдена");
+        return  null;
 
     }
 
@@ -56,44 +56,60 @@ public class ReflectionHelper {
                 }
             } else throw new RuntimeException("Больше одной аннотации @After");
         }
-      throw new RuntimeException("Аннотации @After не найдена");
+      return null;
     }
 
     public Map<String, Integer> execAnnotationsMethods(String className) throws Exception {
-     Class<?> testClass = Class.forName(className);
-     Set<Method> testMethod = findAnnotationsTestMethodsByName(testClass);
-     Method beforeMethod = findAnnotationBeforeMethodsByName(testClass);
-     Method afterMethod = findAnnotationAfterMethodsByName(testClass);
+        Class<?> testClass = Class.forName(className);
+        Set<Method> testMethod = findAnnotationsTestMethodsByName(testClass);
+        Method beforeMethod = findAnnotationBeforeMethodsByName(testClass);
+        Method afterMethod = findAnnotationAfterMethodsByName(testClass);
+        boolean result = true;
 
-     for(Method method : testMethod){
-         Object testObj = testClass.newInstance();
+        for (Method method : testMethod) {
+            Object testObj = testClass.newInstance();
 
-         try{
-             beforeMethod.invoke(testObj, null);
-         }catch (Exception e){
-             System.out.println("Before method failed! "+ e);
-         }
 
-         try{
-             method.invoke(testObj, null);
-             countOfSuccessTestMethods++;
-         }catch (Exception e){
-             countOfFailTestMethods++;
-             System.out.println("Exception in "+method.getName()+" "+ e);
-         }
+            if (beforeMethod != null) {
+                try {
+                    beforeMethod.invoke(testObj, null);
+                } catch (Exception e) {
+                    result = false;
+                    System.out.println("Before method failed! " + e);
+                    break;
+                }
+            }
 
-         try{
-             afterMethod.invoke(testObj, null);
-         }catch (Exception e){
-             System.out.println("After method failed! "+ e);
-         }
+            if (method != null && result != false) {
+                try {
+                    method.invoke(testObj, null);
+                    countOfSuccessTestMethods++;
+                } catch (Exception e) {
+                    countOfFailTestMethods++;
+                    System.out.println("Exception in " + method.getName() + " " + e);
+                }
+            }
 
-     }
+            if (afterMethod != null && result != false) {
+                try {
+                    afterMethod.invoke(testObj, null);
+                } catch (Exception e) {
+                    result = false;
+                    System.out.println("After method failed! " + e);
+                    break;
+                }
+            }
+        }
 
-       Map<String, Integer> statistics = new HashMap<>();
-       statistics.put("Success test methods", countOfSuccessTestMethods);
-       statistics.put("Fail test methods",countOfFailTestMethods);
 
-       return statistics;
+        if (result == false) {
+            return null;
+        } else {
+            Map<String, Integer> statistics = new HashMap<>();
+            statistics.put("Success test methods", countOfSuccessTestMethods);
+            statistics.put("Fail test methods", countOfFailTestMethods);
+
+            return statistics;
+        }
     }
 }
