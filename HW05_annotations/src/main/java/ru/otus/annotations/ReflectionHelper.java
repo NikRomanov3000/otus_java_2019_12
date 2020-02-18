@@ -79,7 +79,7 @@ public class ReflectionHelper {
              countOfSuccessTestMethods++;
          }catch (Exception e){
              countOfFailTestMethods++;
-             System.out.println("Exception " + e);
+             System.out.println("Exception in "+method.getName()+" "+ e);
          }
 
          try{
