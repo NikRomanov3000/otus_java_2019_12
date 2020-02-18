@@ -5,18 +5,26 @@ import ru.otus.annotations.myAnnotations.Before;
 import ru.otus.annotations.myAnnotations.Test;
 
 public class TestAnnotations {
-
+    Adder testAdder;
     @Before
-    public void testMethodTwo() {
+    public void beforeMethod() {
+        testAdder = new Adder();
     }
 
     @Test
-    public void testMethodOne1() {}
+    public void testMethodOne() {
+        if(testAdder.add(3,5)!=8)
+            throw new RuntimeException("Test method one failed!");
+    }
 
     @Test
-    public void testMethodOne2(){}
+    public void testMethodTwo(){
+        if(testAdder.add(0,5)!=1) //Специально неправильный тест
+            throw new RuntimeException("Test method two failed!");
+    }
 
     @After
-    public void testMethodThree() {
+    public void afterMethod() {
+        System.out.println(testAdder);
     }
 }
