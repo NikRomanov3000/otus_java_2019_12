@@ -32,7 +32,7 @@ public class myCassette implements Cassette {
     @Override
     public void refreshCassette(int denomination) {
         banknotesInCassette.clear();
-        for(int i=0; i<2500; i++){ //Про 2500 купюр прочёл в статье про устройство банкомата
+        for(int i=0; i<2100; i++){ //Про 2500 купюр прочёл в статье про устройство банкомата
             banknotesInCassette.add(new myBanknote((denominationOfBanknotes)));
         }
         numberOfBanknotes+=2500;
