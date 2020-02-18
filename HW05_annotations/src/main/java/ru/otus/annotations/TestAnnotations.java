@@ -6,6 +6,7 @@ import ru.otus.annotations.myAnnotations.Test;
 
 public class TestAnnotations {
     Adder testAdder;
+
     @Before
     public void beforeMethod() {
        testAdder = new Adder();

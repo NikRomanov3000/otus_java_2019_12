@@ -33,30 +33,27 @@ public class ReflectionHelper {
     }
 
     private Method findAnnotationBeforeMethodsByName(Class<?> testClass) throws ClassNotFoundException {
-        int beforeCount=0;
+        Method beforeMethod=null;
         for (Method method : testClass.getMethods()){
-            if(beforeCount<1){
-                if(method.isAnnotationPresent(Before.class)){
-                    beforeCount++;
-                    return method;
+                   if(method.isAnnotationPresent(Before.class)){
+                       if(beforeMethod==null){
+                           beforeMethod=method;
+                       }else throw new RuntimeException("Больше одной аннотации @Before");
+                   }
                 }
-            } else throw new RuntimeException("Больше одной аннотации @Before");
-        }
-        return  null;
-
+        return  beforeMethod;
     }
 
     private Method findAnnotationAfterMethodsByName(Class<?> testClass ) throws ClassNotFoundException {
-        int afterCount=0;
+        Method afterMethod=null;;
         for (Method method : testClass.getMethods()){
-            if(afterCount<1){
                 if(method.isAnnotationPresent(After.class)){
-                    afterCount++;
-                    return method;
+                    if(afterMethod==null){
+                        afterMethod=method;
+                    }  else throw new RuntimeException("Больше одной аннотации @After");
                 }
-            } else throw new RuntimeException("Больше одной аннотации @After");
         }
-      return null;
+      return afterMethod;
     }
 
     public Map<String, Integer> execAnnotationsMethods(String className) throws Exception {
@@ -80,7 +77,7 @@ public class ReflectionHelper {
                 }
             }
 
-            if (method != null && result != false) {
+            if (method != null && result) {
                 try {
                     method.invoke(testObj, null);
                     countOfSuccessTestMethods++;
@@ -90,7 +87,7 @@ public class ReflectionHelper {
                 }
             }
 
-            if (afterMethod != null && result != false) {
+            if (afterMethod != null && result) {
                 try {
                     afterMethod.invoke(testObj, null);
                 } catch (Exception e) {
