@@ -70,7 +70,7 @@ public class ReflectionHelper {
 
          try{
              beforeMethod.invoke(testObj, null);
-         }catch (RuntimeException e){
+         }catch (Exception e){
              System.out.println("Before method failed! "+ e);
          }
 
@@ -84,7 +84,7 @@ public class ReflectionHelper {
 
          try{
              afterMethod.invoke(testObj, null);
-         }catch (RuntimeException e){
+         }catch (Exception e){
              System.out.println("After method failed! "+ e);
          }
 
