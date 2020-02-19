@@ -13,7 +13,6 @@ public class TestAnnotations {
        //throw new RuntimeException();
     }
 
-
     @Test
     public void testMethodOne() {
         if(testAdder.add(3,5)!=8)
@@ -23,6 +22,12 @@ public class TestAnnotations {
     @Test
     public void testMethodTwo(){
         if(testAdder.add(0,5)!=1) //Специально неправильный тест
+            throw new RuntimeException("Test method two failed!");
+    }
+
+    @Test
+    public void testMethodThree(){
+        if(testAdder.add(2,5)!=7)
             throw new RuntimeException("Test method two failed!");
     }
 

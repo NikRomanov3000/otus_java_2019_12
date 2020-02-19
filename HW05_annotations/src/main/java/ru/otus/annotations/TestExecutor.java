@@ -20,16 +20,25 @@ public class TestExecutor {
          countOfFailTestMethods=0;
     }
 
-
+private boolean methodInvoker(Method method, Object testObj){
+    try {
+        method.invoke(testObj, null);
+        if(method.isAnnotationPresent(Test.class))
+            countOfSuccessTestMethods++;
+    } catch (Exception e) {
+        System.out.println("Exception in " + method.getName() + " " + e);
+        if(method.isAnnotationPresent(Test.class))
+            countOfFailTestMethods++;
+        return false;
+    }
+    return true;
+}
 
        public Map<String, Integer> execAnnotationsMethods(String className) throws Exception {
         Class<?> testClass = Class.forName(className);
         ReflectionHelper reflectionHelper = new ReflectionHelper();
         Set<Method> testMethod = reflectionHelper.findAnnotationsTestMethodsByName(testClass);
-
         Method beforeMethod = reflectionHelper.findAnnotationMethodByName(testClass, Before.class);
-
-
         Method afterMethod =  reflectionHelper.findAnnotationMethodByName(testClass, After.class);;
         boolean result = true;
 
@@ -37,34 +46,16 @@ public class TestExecutor {
         for (Method method : testMethod) {
             Object testObj = testClass.newInstance();
 
-            if (beforeMethod != null) {
-                try {
-                    beforeMethod.invoke(testObj, null);
-                } catch (Exception e) {
-                    result = false;
-                    System.out.println("Before method failed! " + e);
-                    break;
-                }
+            if (beforeMethod!= null) {
+                result=methodInvoker(beforeMethod, testObj);
             }
 
-            if (method != null) {
-                try {
-                    method.invoke(testObj, null);
-                    countOfSuccessTestMethods++;
-                } catch (Exception e) {
-                    countOfFailTestMethods++;
-                    System.out.println("Exception in " + method.getName() + " " + e);
-                }
+            if (method!= null) {
+                methodInvoker(method, testObj);
             }
 
             if (afterMethod != null && result) {
-                try {
-                    afterMethod.invoke(testObj, null);
-                } catch (Exception e) {
-                    result = false;
-                    System.out.println("After method failed! " + e);
-                    break;
-                }
+                result=methodInvoker(afterMethod, testObj);
             }
         }
 

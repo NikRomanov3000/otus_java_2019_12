@@ -26,7 +26,9 @@ public class ReflectionHelper {
             if(method.isAnnotationPresent(annotation)){
                 if(neededMethod==null){
                     neededMethod=method;
-                }else throw new RuntimeException("Больше одной аннотации @Before");
+                }else {
+                    throw new RuntimeException("Больше одной аннотации " + annotation.getName());
+                }
             }
         }
         return  neededMethod;
