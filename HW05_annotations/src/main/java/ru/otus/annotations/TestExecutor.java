@@ -48,12 +48,10 @@ public class TestExecutor {
         if (!result) {
             statistics.put("Success test methods", 0);
             statistics.put("Fail test methods", 0);
-            return statistics;
         } else {
             statistics.put("Success test methods", countOfSuccessTestMethods);
             statistics.put("Fail test methods", countOfFailTestMethods);
-
-            return statistics;
         }
+        return statistics;
     }
 }
