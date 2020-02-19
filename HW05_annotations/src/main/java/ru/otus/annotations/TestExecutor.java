@@ -11,51 +11,41 @@ import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public class TestExecutor {
-   private int countOfSuccessTestMethods;
+    private int countOfSuccessTestMethods;
     private int countOfFailTestMethods;
 
 
-    public TestExecutor(){
-         countOfSuccessTestMethods=0;
-         countOfFailTestMethods=0;
+    public TestExecutor() {
+        countOfSuccessTestMethods = 0;
+        countOfFailTestMethods = 0;
     }
 
-private boolean methodInvoker(Method method, Object testObj){
-    try {
-        method.invoke(testObj, null);
-        if(method.isAnnotationPresent(Test.class))
-            countOfSuccessTestMethods++;
-    } catch (Exception e) {
-        System.out.println("Exception in " + method.getName() + " " + e);
-        if(method.isAnnotationPresent(Test.class))
-            countOfFailTestMethods++;
-        return false;
-    }
-    return true;
-}
-
-       public Map<String, Integer> execAnnotationsMethods(String className) throws Exception {
+    public Map<String, Integer> execAnnotationsMethods(String className) throws Exception {
         Class<?> testClass = Class.forName(className);
         ReflectionHelper reflectionHelper = new ReflectionHelper();
         Set<Method> testMethod = reflectionHelper.findAnnotationsTestMethodsByName(testClass);
         Method beforeMethod = reflectionHelper.findAnnotationMethodByName(testClass, Before.class);
-        Method afterMethod =  reflectionHelper.findAnnotationMethodByName(testClass, After.class);;
+        Method afterMethod = reflectionHelper.findAnnotationMethodByName(testClass, After.class);
+        ;
         boolean result = true;
 
 
         for (Method method : testMethod) {
             Object testObj = testClass.newInstance();
 
-            if (beforeMethod!= null) {
-                result=methodInvoker(beforeMethod, testObj);
+            if (beforeMethod != null) {
+                result = reflectionHelper.methodInvoker(beforeMethod, testObj);
             }
 
-            if (method!= null) {
-                methodInvoker(method, testObj);
-            }
+            if (method != null && result) {
+                result = reflectionHelper.methodInvoker(method, testObj);
+                if (result)
+                    countOfSuccessTestMethods++;
+                else countOfFailTestMethods++;
+            } else break;
 
             if (afterMethod != null && result) {
-                result=methodInvoker(afterMethod, testObj);
+                result = reflectionHelper.methodInvoker(afterMethod, testObj);
             }
         }
 

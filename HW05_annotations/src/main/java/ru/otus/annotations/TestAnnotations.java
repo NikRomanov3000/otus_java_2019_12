@@ -9,25 +9,25 @@ public class TestAnnotations {
 
     @Before
     public void beforeMethod() {
-       testAdder = new Adder();
-       //throw new RuntimeException();
+        testAdder = new Adder();
+        //throw new RuntimeException();
     }
 
     @Test
     public void testMethodOne() {
-        if(testAdder.add(3,5)!=8)
+        if (testAdder.add(3, 5) != 8)
             throw new RuntimeException("Test method one failed!");
     }
 
     @Test
-    public void testMethodTwo(){
-        if(testAdder.add(0,5)!=1) //Специально неправильный тест
+    public void testMethodTwo() {
+        if (testAdder.add(0, 5) != 1) //Специально неправильный тест
             throw new RuntimeException("Test method two failed!");
     }
 
     @Test
-    public void testMethodThree(){
-        if(testAdder.add(2,5)!=7)
+    public void testMethodThree() {
+        if (testAdder.add(2, 5) != 7)
             throw new RuntimeException("Test method two failed!");
     }
 

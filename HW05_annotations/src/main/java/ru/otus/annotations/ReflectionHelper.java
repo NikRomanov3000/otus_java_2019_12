@@ -9,28 +9,39 @@ import java.util.Set;
 
 public class ReflectionHelper {
 
-    public Set<Method> findAnnotationsTestMethodsByName(Class<?> testClass ) throws ClassNotFoundException {
+    public static Set<Method> findAnnotationsTestMethodsByName(Class<?> testClass) throws ClassNotFoundException {
         Set<Method> testMethods = new LinkedHashSet<>();
 
-        for(Method method : testClass.getMethods()){
-            if(method.isAnnotationPresent(Test.class)){
+        for (Method method : testClass.getMethods()) {
+            if (method.isAnnotationPresent(Test.class)) {
                 testMethods.add(method);
             }
         }
         return testMethods;
     }
 
-    public Method findAnnotationMethodByName(Class<?> testClass, Class annotation) throws ClassNotFoundException {
-        Method neededMethod=null;
-        for (Method method : testClass.getMethods()){
-            if(method.isAnnotationPresent(annotation)){
-                if(neededMethod==null){
-                    neededMethod=method;
-                }else {
+    public static Method findAnnotationMethodByName(Class<?> testClass, Class annotation) throws ClassNotFoundException {
+        Method neededMethod = null;
+        for (Method method : testClass.getMethods()) {
+            if (method.isAnnotationPresent(annotation)) {
+                if (neededMethod == null) {
+                    neededMethod = method;
+                } else {
                     throw new RuntimeException("Больше одной аннотации " + annotation.getName());
                 }
             }
         }
-        return  neededMethod;
+        return neededMethod;
     }
+
+    public static boolean methodInvoker(Method method, Object testObj) {
+        try {
+            method.invoke(testObj, null);
+        } catch (Exception e) {
+            System.out.println("Exception in " + method.getName() + " " + e);
+            return false;
+        }
+        return true;
+    }
+
 }

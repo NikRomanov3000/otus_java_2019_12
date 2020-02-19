@@ -1,7 +1,7 @@
 package ru.otus.annotations;
 
 public class Adder {
-    public int add(int d1, int d2){
+    public int add(int d1, int d2) {
         if (d1 != 0) {
             return d1 + d2;
         }
