@@ -10,6 +10,7 @@ public class TestAnnotations {
     @Before
     public void beforeMethod() {
         testAdder = new Adder();
+       // throw new RuntimeException();
     }
 
     @Test

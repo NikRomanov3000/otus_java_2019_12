@@ -2,10 +2,11 @@ package ru.otus.annotations;
 
 import ru.otus.annotations.myAnnotations.After;
 import ru.otus.annotations.myAnnotations.Before;
+
 import static ru.otus.annotations.ReflectionHelper.*;
+
 import java.lang.reflect.Method;
 import java.util.*;
-
 
 
 public class TestExecutor {
@@ -36,9 +37,13 @@ public class TestExecutor {
                 if (invokerMethod(method, testObj))
                     countOfSuccessTestMethods++;
                 else countOfFailTestMethods++;
-            } else break;
+            } else {
+                if (afterMethod != null )
+                    result = invokerMethod(afterMethod, testObj);
+                break;
+            }
 
-            if (afterMethod != null && result) {
+            if (afterMethod != null ) {
                 result = invokerMethod(afterMethod, testObj);
             }
         }
@@ -47,10 +52,9 @@ public class TestExecutor {
         if (!result) {
             statistics.put("Success test methods", 0);
             statistics.put("Fail test methods", 0);
-        } else {
-            statistics.put("Success test methods", countOfSuccessTestMethods);
-            statistics.put("Fail test methods", countOfFailTestMethods);
         }
+        statistics.put("Success test methods", countOfSuccessTestMethods);
+        statistics.put("Fail test methods", countOfFailTestMethods);
         return statistics;
     }
 }
