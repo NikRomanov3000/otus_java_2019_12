@@ -33,8 +33,7 @@ public class TestExecutor {
             }
 
             if (method != null && result) {
-                result = reflectionHelper.methodInvoker(method, testObj);
-                if (result)
+                if (reflectionHelper.methodInvoker(method, testObj))
                     countOfSuccessTestMethods++;
                 else countOfFailTestMethods++;
             } else break;
