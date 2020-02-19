@@ -12,7 +12,8 @@ import java.util.*;
 public class TestExecutor {
     private int countOfSuccessTestMethods;
     private int countOfFailTestMethods;
-
+    static final String SUCCESS_TEST_NUMBER = "Success test methods";
+    static final String FAIL_TEST_NUMBER = "Fail test methods";
 
     public TestExecutor() {
         countOfSuccessTestMethods = 0;
@@ -38,23 +39,23 @@ public class TestExecutor {
                     countOfSuccessTestMethods++;
                 else countOfFailTestMethods++;
             } else {
-                if (afterMethod != null )
+                if (afterMethod != null)
                     result = invokerMethod(afterMethod, testObj);
                 break;
             }
 
-            if (afterMethod != null ) {
+            if (afterMethod != null) {
                 result = invokerMethod(afterMethod, testObj);
             }
         }
 
         Map<String, Integer> statistics = new HashMap<>();
         if (!result) {
-            statistics.put("Success test methods", 0);
-            statistics.put("Fail test methods", 0);
+            statistics.put(SUCCESS_TEST_NUMBER, 0);
+            statistics.put(FAIL_TEST_NUMBER, 0);
         }
-        statistics.put("Success test methods", countOfSuccessTestMethods);
-        statistics.put("Fail test methods", countOfFailTestMethods);
+        statistics.put(SUCCESS_TEST_NUMBER, countOfSuccessTestMethods);
+        statistics.put(FAIL_TEST_NUMBER, countOfFailTestMethods);
         return statistics;
     }
 }
