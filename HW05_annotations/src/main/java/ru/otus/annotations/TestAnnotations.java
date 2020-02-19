@@ -10,8 +10,9 @@ public class TestAnnotations {
     @Before
     public void beforeMethod() {
        testAdder = new Adder();
-       // throw new RuntimeException();
+       //throw new RuntimeException();
     }
+
 
     @Test
     public void testMethodOne() {
