@@ -1,6 +1,5 @@
 package ru.otus.annotations;
 
-import ru.otus.annotations.myAnnotations.Before;
 import ru.otus.annotations.myAnnotations.Test;
 
 import java.lang.reflect.Method;

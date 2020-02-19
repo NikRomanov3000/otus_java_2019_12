@@ -34,5 +34,6 @@ public class TestAnnotations {
     @After
     public void afterMethod() {
         System.out.println(testAdder);
+        //throw new RuntimeException();
     }
 }
