@@ -2,8 +2,11 @@ package ru.otus.annotations;
 
 import ru.otus.annotations.myAnnotations.After;
 import ru.otus.annotations.myAnnotations.Before;
+import static ru.otus.annotations.ReflectionHelper.*;
 import java.lang.reflect.Method;
 import java.util.*;
+
+
 
 public class TestExecutor {
     private int countOfSuccessTestMethods;
@@ -17,29 +20,26 @@ public class TestExecutor {
 
     public Map<String, Integer> execAnnotationsMethods(String className) throws Exception {
         Class<?> testClass = Class.forName(className);
-        ReflectionHelper reflectionHelper = new ReflectionHelper();
-        Set<Method> testMethod = reflectionHelper.findAnnotationsTestMethodsByName(testClass);
-        Method beforeMethod = reflectionHelper.findAnnotationMethodByName(testClass, Before.class);
-        Method afterMethod = reflectionHelper.findAnnotationMethodByName(testClass, After.class);
-        ;
+        Set<Method> testMethod = findAnnotationsTestMethodsByName(testClass);
+        Method beforeMethod = findAnnotationMethodByName(testClass, Before.class);
+        Method afterMethod = findAnnotationMethodByName(testClass, After.class);
         boolean result = true;
-
 
         for (Method method : testMethod) {
             Object testObj = testClass.newInstance();
 
             if (beforeMethod != null) {
-                result = reflectionHelper.methodInvoker(beforeMethod, testObj);
+                result = invokerMethod(beforeMethod, testObj);
             }
 
             if (method != null && result) {
-                if (reflectionHelper.methodInvoker(method, testObj))
+                if (invokerMethod(method, testObj))
                     countOfSuccessTestMethods++;
                 else countOfFailTestMethods++;
             } else break;
 
             if (afterMethod != null && result) {
-                result = reflectionHelper.methodInvoker(afterMethod, testObj);
+                result = invokerMethod(afterMethod, testObj);
             }
         }
 

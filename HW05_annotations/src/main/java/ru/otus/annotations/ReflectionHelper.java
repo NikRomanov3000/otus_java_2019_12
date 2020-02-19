@@ -33,7 +33,7 @@ public class ReflectionHelper {
         return neededMethod;
     }
 
-    public static boolean methodInvoker(Method method, Object testObj) {
+    public static boolean invokerMethod(Method method, Object testObj) {
         try {
             method.invoke(testObj, null);
         } catch (Exception e) {
