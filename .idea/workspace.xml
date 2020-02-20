@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6419a4f8-779e-4237-b889-dcdef31c17c2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW03_GC/src/main/java/ru/otus/gc/brench/Report.md" beforeDir="false" afterPath="$PROJECT_DIR$/HW03_GC/src/main/java/ru/otus/gc/brench/Report.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1XNrTWGqDWJ176Ka0D7TG1eXjLR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
+  </component>
+  <component name="RunManager">
+    <configuration name="TestGC" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.otus.gc.brench.TestGC" />
+      <module name="HW03_GC" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.otus.gc.brench.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TestGC" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6419a4f8-779e-4237-b889-dcdef31c17c2" name="Default Changelist" comment="" />
+      <created>1580897400960</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580897400960</updated>
+      <workItem from="1580897404628" duration="205000" />
+      <workItem from="1580897619851" duration="23000" />
+      <workItem from="1580897783282" duration="86000" />
+      <workItem from="1580897922162" duration="63000" />
+      <workItem from="1580901133853" duration="597000" />
+    </task>
+    <task id="LOCAL-00001" summary="0">
+      <created>1580897831813</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1580897831813</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="0" />
+    <option name="LAST_COMMIT_MESSAGE" value="0" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="718" y="159" key="CommitChangelistDialog2" timestamp="1580897830395">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="718" y="159" key="CommitChangelistDialog2/1920.230.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1580897830395" />
+    <state x="873" y="319" key="FileChooserDialogImpl" timestamp="1580897640292">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="873" y="319" key="FileChooserDialogImpl/1920.230.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1580897640292" />
+    <state width="1340" height="223" key="GridCell.Tab.0.bottom" timestamp="1580897984273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1340" height="223" key="GridCell.Tab.0.bottom/1920.230.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1580897984273" />
+    <state width="1340" height="223" key="GridCell.Tab.0.center" timestamp="1580897984273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1340" height="223" key="GridCell.Tab.0.center/1920.230.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1580897984273" />
+    <state width="1340" height="223" key="GridCell.Tab.0.left" timestamp="1580897984273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1340" height="223" key="GridCell.Tab.0.left/1920.230.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1580897984273" />
+    <state width="1340" height="223" key="GridCell.Tab.0.right" timestamp="1580897984273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1340" height="223" key="GridCell.Tab.0.right/1920.230.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1580897984273" />
+    <state x="594" y="191" key="SettingsEditor" timestamp="1580897812091">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="594" y="191" key="SettingsEditor/1920.230.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1580897812091" />
+    <state x="685" y="297" key="Vcs.Push.Dialog.v2" timestamp="1580897849174">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="685" y="297" key="Vcs.Push.Dialog.v2/1920.230.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1580897849174" />
+    <state x="789" y="388" key="com.intellij.ide.util.TipDialog" timestamp="1580901134967">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="789" y="388" key="com.intellij.ide.util.TipDialog/1920.230.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1580901134967" />
+  </component>
+</project>
