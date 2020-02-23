@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class Denomination {
-    Integer denomination1 = 5000;
-    Integer denomination2 = 1000;
-    Integer denomination3 = 500;
-    Integer denomination4 = 100;
-    List<Integer> denominationList = new ArrayList<>();
+    private Integer denomination1 = 5000;
+    private Integer denomination2 = 1000;
+    private Integer denomination3 = 500;
+    private Integer denomination4 = 100;
+    private List<Integer> denominationList = new ArrayList<>();
 
     public Denomination() {
         denominationList.add(denomination1);
@@ -22,7 +22,7 @@ public class Denomination {
         Collections.sort(denominationList);
     }
 
-    public List<Integer> getDenominationsList(List<Integer> denominationList) {
+    public List<Integer> getDenominationsList() {
         sortListDenomination(denominationList);
         return denominationList;
     }

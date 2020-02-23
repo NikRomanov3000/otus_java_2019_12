@@ -1,5 +1,6 @@
 package ru.otus.atm;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,8 +17,20 @@ public class MoneyReceiver {
         }
     }
 
-    public List<Banknote> getBanknotesFromATM() {
+    public List<Banknote> getBanknotesFromATM(int requiredNumberOfBanknotes, Denomination denominations, List<Cassette> cassettes) {
+        List<Banknote> banknotes = new ArrayList<>();
+        ATMCalcHelper atmCalcHelper = new ATMCalcHelper();
+        Map<Integer, Integer> calcMap = atmCalcHelper.calcNumberOfRequiredBanknote(requiredNumberOfBanknotes, denominations);
+        for (Cassette cassette : cassettes) {
+            for (Map.Entry<Integer, Integer> map : calcMap.entrySet()) {
+                if(cassette.getDenomination()==map.getKey()){
+                    for(int i=0; i<map.getValue(); i++){
+                       banknotes.add(cassette.getBanknote());
+                    }
+                }
+            }
+        }
 
-        return null;
+        return banknotes;
     }
 }
