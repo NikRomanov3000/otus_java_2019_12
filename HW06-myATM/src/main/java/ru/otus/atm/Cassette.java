@@ -6,7 +6,7 @@ public class Cassette {
     private int numberOfBanknotes;
     private final int denominationOfBanknotes;
     private static final int MAX_NUMBER_OF_BANKNOTES = 2500;
-    LinkedList<Banknote> banknotesInCassette;
+    LinkedList<Banknote> banknotesInCassette= new LinkedList<>();
 
     public Cassette(int denominationOfBanknotes) {
         numberOfBanknotes = 0;

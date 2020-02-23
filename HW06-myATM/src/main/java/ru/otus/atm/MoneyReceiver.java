@@ -13,13 +13,14 @@ public class MoneyReceiver {
         for (Map.Entry<Integer, Cassette> map : banknoteMap.entrySet()) {
             if (banknote.getDenomination() == map.getKey()) {
                 map.getValue().addBanknote(banknote);
-            } else throw new RuntimeException("Внутренняя ошибка банкомата, обраитесь к сотруднику банка");
+            }
         }
     }
 
-    public List<Banknote> getBanknotesFromATM(int requiredNumberOfBanknotes, Denomination denominations, List<Cassette> cassettes) {
+    public List<Banknote> getBanknotesFromATM(int requiredNumberOfBanknotes, List<Cassette> cassettes) {
         List<Banknote> banknotes = new ArrayList<>();
         ATMCalcHelper atmCalcHelper = new ATMCalcHelper();
+        Denomination denominations = new Denomination();
         Map<Integer, Integer> calcMap = atmCalcHelper.calcNumberOfRequiredBanknote(requiredNumberOfBanknotes, denominations);
         for (Cassette cassette : cassettes) {
             for (Map.Entry<Integer, Integer> map : calcMap.entrySet()) {
