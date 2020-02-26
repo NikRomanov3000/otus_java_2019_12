@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class ATMCalcHelper {
 
-    public Map<Integer, Integer> calcNumberOfRequiredBanknote(int sum, Denomination denominations) {
+    public static Map<Integer, Integer> calcNumberOfRequiredBanknote(int sum, Denomination denominations) {
 
         if (sum % denominations.getDenomination4()!= 0) {
             throw new RuntimeException("Введите сумму кратную " + denominations.getDenomination4().toString());

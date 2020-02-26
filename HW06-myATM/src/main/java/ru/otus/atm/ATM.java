@@ -11,12 +11,17 @@ public class ATM {
     private MoneyReceiver moneyReceiver;
 
     public ATM() {
+       moneyReceiver = new MoneyReceiver();
+       refreshATMCassettes();
+    }
+    
+    public void refreshATMCassettes(){
         Denomination denominations = new Denomination();
         List<Integer> denominationsList = denominations.getDenominationsList();
         for (Integer denomination : denominationsList) {
             cassettes.add(new Cassette(denomination));
         }
-        moneyChecker = new MoneyChecker();
+
     }
 
     public int getATMBalance() {
