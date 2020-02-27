@@ -43,23 +43,4 @@ public class Denomination {
         return denomination4;
     }
 
-    public void setDenomination1(Integer denomination1) {
-        this.denomination1 = denomination1;
-        sortListDenomination(denominationList);
-    }
-
-    public void setDenomination2(Integer denomination2) {
-        this.denomination2 = denomination2;
-        sortListDenomination(denominationList);
-    }
-
-    public void setDenomination3(Integer denomination3) {
-        this.denomination3 = denomination3;
-        sortListDenomination(denominationList);
-    }
-
-    public void setDenomination4(Integer denomination4) {
-        this.denomination4 = denomination4;
-        sortListDenomination(denominationList);
-    }
 }
