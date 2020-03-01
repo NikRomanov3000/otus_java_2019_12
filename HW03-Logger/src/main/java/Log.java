@@ -5,4 +5,4 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface Log_annotation {}
+public @interface Log {}

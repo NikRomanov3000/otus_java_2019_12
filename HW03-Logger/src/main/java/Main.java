@@ -1,5 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        new TestLog().sayHelloUser("Nikita");
+        TestLoggingInterface myTest = MyIoC.createMyClass();
+        myTest.sayHelloUser("Nikita");
     }
 }
