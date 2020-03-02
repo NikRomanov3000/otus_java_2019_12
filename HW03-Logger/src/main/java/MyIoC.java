@@ -36,11 +36,12 @@ public class MyIoC {
             for (Method method : methodsInterface) {
                 if (method.getName() == annotationMethodName)
                     helpMethodsMap.put(method, true);
+                else helpMethodsMap.put(method, false);
             }
 
         }
 
-        @Override //Map канает внутри invoke
+        @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             if (helpMethodsMap.get(method)) {
                 if (args != null) {
@@ -53,6 +54,7 @@ public class MyIoC {
 
             return method.invoke(myClass, args);
         }
+
 
         @Override
         public String toString() {
