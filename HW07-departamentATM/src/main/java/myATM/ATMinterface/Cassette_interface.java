@@ -1,6 +1,5 @@
-package ru.otus.atm.ATMinterface;
-
-import ru.otus.atm.Banknote;
+package myATM.ATMinterface;
+import myATM.Banknote;
 
 public interface Cassette_interface {
     int getNumberOfBanknotes();

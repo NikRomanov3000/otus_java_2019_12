@@ -1,6 +1,6 @@
-package ru.otus.atm;
+package myATM;
 
-import ru.otus.atm.ATMinterface.ATM_interface;
+import myATM.ATMinterface.ATM_interface;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -20,7 +20,7 @@
     </developers>
 
     <modules>
-      <module>HW06-myATM</module>
+        <module>HW07-departamentATM</module>
     </modules>
 
     <properties>

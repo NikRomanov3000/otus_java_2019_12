@@ -1,6 +1,6 @@
-package ru.otus.atm;
+package myATM;
 
-import ru.otus.atm.ATMinterface.MoneyChecker_interface;
+import myATM.ATMinterface.MoneyChecker_interface;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,6 +1,7 @@
-package ru.otus.atm.ATMinterface;
+package myATM.ATMinterface;
 
-import ru.otus.atm.Cassette;
+import myATM.Cassette;
+
 import java.util.List;
 
 public interface MoneyChecker_interface {

@@ -1,13 +1,13 @@
-package ru.otus.atm;
+package myATM;
 
-import ru.otus.atm.ATMinterface.MoneyChecker_interface;
-import ru.otus.atm.ATMinterface.MoneyReceiver_interface;
+import myATM.ATMinterface.MoneyReceiver_interface;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static ru.otus.atm.ATMCalcHelper.calcNumberOfRequiredBanknote;
+import static myATM.ATMCalcHelper.calcNumberOfRequiredBanknote;
+
 
 public class MoneyReceiver implements MoneyReceiver_interface {
     @Override

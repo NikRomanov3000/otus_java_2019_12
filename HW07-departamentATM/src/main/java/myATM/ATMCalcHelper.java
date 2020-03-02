@@ -1,4 +1,4 @@
-package ru.otus.atm;
+package myATM;
 
 import java.util.HashMap;
 import java.util.Map;

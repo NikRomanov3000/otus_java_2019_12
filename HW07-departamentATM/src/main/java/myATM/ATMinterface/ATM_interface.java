@@ -1,9 +1,6 @@
-package ru.otus.atm.ATMinterface;
+package myATM.ATMinterface;
 
-import ru.otus.atm.Banknote;
-import ru.otus.atm.Cassette;
-import ru.otus.atm.Denomination;
-import ru.otus.atm.MoneyChecker;
+import myATM.Banknote;
 
 import java.util.List;
 

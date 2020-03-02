@@ -1,6 +1,6 @@
-package ru.otus.atm;
+package myATM;
 
-import ru.otus.atm.ATMinterface.Cassette_interface;
+import myATM.ATMinterface.Cassette_interface;
 
 import java.util.LinkedList;
 

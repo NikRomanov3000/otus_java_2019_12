@@ -1,4 +1,4 @@
-package ru.otus.atm;
+package myATM;
 
 public class Banknote {
     private final int denomination;
