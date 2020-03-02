@@ -1,7 +1,9 @@
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -19,27 +21,29 @@ public class MyIoC {
 
         MyInvocationHandler(TestLoggingInterface myClass) {
             this.myClass = myClass;
-            Class<?> myClassInterface = myClass.getClass().getInterfaces()[0];
             Method[] methods = myClass.getClass().getMethods();
-
+            Method[] methodsInterface = myClass.getClass().getInterfaces()[0].getMethods();
             for (Method method : methods) {
                 if (method.isAnnotationPresent(Log.class)) {
-                    String annotationMethodName;
-                    annotationMethodName = method.getName();
-                    initHelpMap(myClass, annotationMethodName);
-                }
+                    initHelpMapTrue(method.getName(), methodsInterface);
+                } else initHelpMapFalse(method.getName(), methodsInterface);
             }
         }
 
-        private void initHelpMap(TestLoggingInterface myClass, String annotationMethodName) {
-            Method[] methodsInterface = myClass.getClass().getInterfaces()[0].getMethods();
+        private void initHelpMapTrue(String MethodName, Method[] methodsInterface) {
             for (Method method : methodsInterface) {
-                if (method.getName() == annotationMethodName)
+                if (method.getName() == MethodName)
                     helpMethodsMap.put(method, true);
-                else helpMethodsMap.put(method, false);
             }
-
         }
+
+        private void initHelpMapFalse(String MethodName, Method[] methodsInterface) {
+            for (Method method : methodsInterface) {
+                if (method.getName() == MethodName)
+                    helpMethodsMap.put(method, false);
+            }
+        }
+
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -51,7 +55,6 @@ public class MyIoC {
                 } else
                     System.out.println("invoking method: " + method.getName());
             }
-
             return method.invoke(myClass, args);
         }
 
