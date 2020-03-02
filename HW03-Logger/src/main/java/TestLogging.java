@@ -10,14 +10,14 @@ public class TestLogging implements TestLoggingInterface {
         System.out.println("Hello World!");
     }
 
-    @Override
-    public String toString() {
-        return "TestLogging{}";
-    }
-
     @Log
     @Override
     public void sayHelloAgain() {
         System.out.println("Welcome to the club, buddy");
+    }
+
+    @Override
+    public String toString() {
+        return "TestLogging{}";
     }
 }
