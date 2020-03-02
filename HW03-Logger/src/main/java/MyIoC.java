@@ -15,28 +15,36 @@ public class MyIoC {
 
     static class MyInvocationHandler implements InvocationHandler {
         private final TestLoggingInterface myClass;
-        private Map<Method, Boolean> helpMap = new HashMap<>();
+        private Map<Method, Boolean> helpMethodsMap = new HashMap<>();
 
         MyInvocationHandler(TestLoggingInterface myClass) {
             this.myClass = myClass;
+            Class<?> myClassInterface = myClass.getClass().getInterfaces()[0];
             Method[] methods = myClass.getClass().getMethods();
+           int count = myClass.getClass().getInterfaces()[0].getMethods().length;
+            System.out.println(count);
+            System.out.println(myClass.getClass().toString());
+            System.out.println(myClass.getClass().getInterfaces()[0].toString());
 
-            for (Method method : methods) {
-                if (method.isAnnotationPresent(Log.class)) {
-                    helpMap.put(method, true);
-                } else
-                    helpMap.put(method, false);
-            }
+                for (Method method : methods) {
+                    if (method.isAnnotationPresent(Log.class))
+                        helpMethodsMap.put(method, true);
+                    else
+                        helpMethodsMap.put(method, false);
+                }
         }
 
-        @Override
+        @Override //Map канает внутри invoke
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            if (helpMap.get(method)) {
+            System.out.println(method);
+            // System.out.println(helpMap.get(method));
+            //if (helpMethodsMap.get(method)) {
                 if (args != null)
                     System.out.println("invoking method: " + method.getName() + "with param: " + args[0].toString());
                 else
                     System.out.println("invoking method: " + method.getName());
-            }
+            //}
+
 
             return method.invoke(myClass, args);
         }
