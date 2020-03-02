@@ -6,6 +6,11 @@ public class TestLogging implements TestLoggingInterface {
     }
 
     @Override
+    public void sayHello() {
+        System.out.println("Hello World!");
+    }
+
+    @Override
     public String toString() {
         return "TestLogging{}";
     }
