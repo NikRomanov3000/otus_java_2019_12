@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 public class MyIoC {
     static TestLoggingInterface createMyClass() {
         InvocationHandler handler = new MyInvocationHandler(new TestLogging());
@@ -18,32 +17,23 @@ public class MyIoC {
         private final TestLoggingInterface myClass;
         private Map<Method, Boolean> helpMethodsMap = new HashMap<>();
 
-
         MyInvocationHandler(TestLoggingInterface myClass) {
             this.myClass = myClass;
             Method[] methods = myClass.getClass().getMethods();
             Method[] methodsInterface = myClass.getClass().getInterfaces()[0].getMethods();
             for (Method method : methods) {
                 if (method.isAnnotationPresent(Log.class)) {
-                    initHelpMapTrue(method.getName(), methodsInterface);
-                } else initHelpMapFalse(method.getName(), methodsInterface);
+                    initHelpMap(method.getName(), methodsInterface, true);
+                } else initHelpMap(method.getName(), methodsInterface, false);
             }
         }
 
-        private void initHelpMapTrue(String MethodName, Method[] methodsInterface) {
+        private void initHelpMap(String MethodName, Method[] methodsInterface, boolean value) {
             for (Method method : methodsInterface) {
                 if (method.getName() == MethodName)
-                    helpMethodsMap.put(method, true);
+                    helpMethodsMap.put(method, value);
             }
         }
-
-        private void initHelpMapFalse(String MethodName, Method[] methodsInterface) {
-            for (Method method : methodsInterface) {
-                if (method.getName() == MethodName)
-                    helpMethodsMap.put(method, false);
-            }
-        }
-
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -57,7 +47,6 @@ public class MyIoC {
             }
             return method.invoke(myClass, args);
         }
-
 
         @Override
         public String toString() {
