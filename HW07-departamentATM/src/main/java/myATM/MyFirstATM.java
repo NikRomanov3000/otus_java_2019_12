@@ -4,9 +4,9 @@ import myATM.ATMinterface.ATM_interface;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MyFirstATM implements ATM_interface {
-    private static final int SERIAL_NUMBER = (int) (Math.random() * 1000000);
     private Denomination denominations;
     private List<Cassette> cassettes = new ArrayList<>();
     private MoneyReceiver moneyReceiver;
@@ -42,6 +42,6 @@ public class MyFirstATM implements ATM_interface {
 
     @Override
     public String toString() {
-        return "My First ATM serial number: " + MyFirstATM.SERIAL_NUMBER;
+        return "My First ATM";
     }
 }

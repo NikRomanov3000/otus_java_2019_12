@@ -7,7 +7,7 @@ public class Memento {
 
     public Memento(PoolAtm state) {
         this.state = new PoolAtm(state);
-        System.out.println(state);
+        System.out.println(this.state);
     }
 
     public PoolAtm getState() {
