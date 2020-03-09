@@ -1,5 +1,6 @@
 # Cвой json object writer
-
+Романов Никита. Курс Разработчик Java. 
+--------------------------------------
 Напишите свой json object writer (object to JSON string) аналогичный gson на основе javax.json.
 
 Поддержите:
