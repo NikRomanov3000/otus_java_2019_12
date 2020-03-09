@@ -5,13 +5,13 @@ import myATM.ATMinterface.ATM_interface;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ATM implements ATM_interface {
+public class MyFirstATM implements ATM_interface {
     private static final int SERIAL_NUMBER = (int) (Math.random() * 1000000);
     private Denomination denominations;
     private List<Cassette> cassettes = new ArrayList<>();
     private MoneyReceiver moneyReceiver;
 
-    public ATM() {
+    public MyFirstATM() {
         moneyReceiver = new MoneyReceiver();
         refreshATMCassettes();
     }
@@ -22,7 +22,6 @@ public class ATM implements ATM_interface {
         for (Integer denomination : denominationsList) {
             cassettes.add(new Cassette(denomination));
         }
-
     }
 
     @Override
@@ -39,5 +38,10 @@ public class ATM implements ATM_interface {
     @Override
     public List<Banknote> getBanknotesFromATM(int requiredSum) {
         return moneyReceiver.getBanknotesFromATM(requiredSum, cassettes);
+    }
+
+    @Override
+    public String toString() {
+        return "My First ATM serial number: " + MyFirstATM.SERIAL_NUMBER;
     }
 }
