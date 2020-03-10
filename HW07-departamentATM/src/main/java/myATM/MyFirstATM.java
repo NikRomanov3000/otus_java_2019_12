@@ -4,10 +4,9 @@ import myATM.ATMinterface.ATM_interface;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 public class MyFirstATM implements ATM_interface {
-    private Denomination denominations;
     private List<Cassette> cassettes = new ArrayList<>();
     private MoneyReceiver moneyReceiver;
 
@@ -17,8 +16,7 @@ public class MyFirstATM implements ATM_interface {
     }
 
     public void refreshATMCassettes() {
-        denominations = new Denomination();
-        List<Integer> denominationsList = denominations.getDenominationsList();
+        List<Integer> denominationsList = Denominations.getListOfDenominations();
         for (Integer denomination : denominationsList) {
             cassettes.add(new Cassette(denomination));
         }

@@ -25,8 +25,7 @@ public class MoneyReceiver implements MoneyReceiver_interface {
     @Override
     public List<Banknote> getBanknotesFromATM(int requiredNumberOfBanknotes, List<Cassette> cassettes) {
         List<Banknote> banknotes = new ArrayList<>();
-        Denomination denominations = new Denomination();
-        Map<Integer, Integer> calcMap = calcNumberOfRequiredBanknote(requiredNumberOfBanknotes, denominations);
+        Map<Integer, Integer> calcMap = calcNumberOfRequiredBanknote(requiredNumberOfBanknotes);
         for (Cassette cassette : cassettes) {
             for (Map.Entry<Integer, Integer> map : calcMap.entrySet()) {
                 if (cassette.getDenomination() == map.getKey()) {

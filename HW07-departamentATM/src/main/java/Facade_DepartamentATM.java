@@ -9,13 +9,14 @@ import myATM.DepartamentATM_interface;
 //Facade_DepartamentATM Реализует упращённые интерфейс работы со всеми банокматами, аля 3 кнопки для сложноый системы АТМ-ов
 public class Facade_DepartamentATM implements DepartamentATM_interface {
     private PoolAtm poolAtm;
-    private final int numberOfAtm = 5;
+    private final int numberOfAtm;
     private final Originator originator;
 
-    public Facade_DepartamentATM() {
+    public Facade_DepartamentATM(int numberOfAtm) {
         poolAtm = new PoolAtm(numberOfAtm, new FactoryATM());
         originator = new Originator();
         originator.saveState(poolAtm);
+        this.numberOfAtm = numberOfAtm;
     }
 
     @Override
