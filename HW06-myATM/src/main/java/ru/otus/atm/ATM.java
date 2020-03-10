@@ -7,7 +7,6 @@ import java.util.List;
 
 public class ATM implements ATM_interface {
     private static final int SERIAL_NUMBER = (int) (Math.random() * 1000000);
-    private Denomination denominations;
     private List<Cassette> cassettes = new ArrayList<>();
     private MoneyReceiver moneyReceiver;
 
@@ -17,8 +16,7 @@ public class ATM implements ATM_interface {
     }
 
     public void refreshATMCassettes() {
-        denominations = new Denomination();
-        List<Integer> denominationsList = denominations.getDenominationsList();
+        List<Integer> denominationsList = Denominations.getListOfDenominations();
         for (Integer denomination : denominationsList) {
             cassettes.add(new Cassette(denomination));
         }
