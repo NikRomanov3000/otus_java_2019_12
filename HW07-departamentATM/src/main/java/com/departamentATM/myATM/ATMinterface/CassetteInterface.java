@@ -1,5 +1,5 @@
-package com.departamentATM.DepartmentPatrens.myATM.ATMinterface;
-import com.departamentATM.DepartmentPatrens.myATM.Banknote;
+package com.departamentATM.myATM.ATMinterface;
+import com.departamentATM.myATM.Banknote;
 
 public interface CassetteInterface {
     int getNumberOfBanknotes();

@@ -1,6 +1,6 @@
-package com.departamentATM.DepartmentPatrens.myATM;
+package com.departamentATM.myATM;
 
-import com.departamentATM.DepartmentPatrens.myATM.ATMinterface.MoneyCheckerInterface;
+import com.departamentATM.myATM.ATMinterface.MoneyCheckerInterface;
 
 import java.util.HashMap;
 import java.util.List;

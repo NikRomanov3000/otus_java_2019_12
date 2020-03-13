@@ -1,6 +1,6 @@
-package com.departamentATM.DepartmentPatrens.myATM;
+package com.departamentATM.myATM;
 
-import com.departamentATM.DepartmentPatrens.myATM.ATMinterface.CassetteInterface;
+import com.departamentATM.myATM.ATMinterface.CassetteInterface;
 
 import java.util.LinkedList;
 

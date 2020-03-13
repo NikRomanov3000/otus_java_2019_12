@@ -1,6 +1,6 @@
-package com.departamentATM.DepartmentPatrens.myATM;
+package com.departamentATM.myATM;
 
-import com.departamentATM.DepartmentPatrens.myATM.ATMinterface.ATMInterface;
+import com.departamentATM.myATM.ATMinterface.ATMInterface;
 
 import java.util.ArrayList;
 import java.util.List;

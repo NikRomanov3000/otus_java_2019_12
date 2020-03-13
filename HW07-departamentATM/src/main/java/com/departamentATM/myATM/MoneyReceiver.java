@@ -1,12 +1,10 @@
-package com.departamentATM.DepartmentPatrens.myATM;
+package com.departamentATM.myATM;
 
-import com.departamentATM.DepartmentPatrens.myATM.ATMinterface.MoneyReceiverInterface;
+import com.departamentATM.myATM.ATMinterface.MoneyReceiverInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static com.departamentATM.DepartmentPatrens.myATM.ATMCalcHelper.calcNumberOfRequiredBanknote;
 
 
 public class MoneyReceiver implements MoneyReceiverInterface {
@@ -25,7 +23,7 @@ public class MoneyReceiver implements MoneyReceiverInterface {
     @Override
     public List<Banknote> getBanknotesFromATM(int requiredNumberOfBanknotes, List<Cassette> cassettes) {
         List<Banknote> banknotes = new ArrayList<>();
-        Map<Integer, Integer> calcMap = calcNumberOfRequiredBanknote(requiredNumberOfBanknotes);
+        Map<Integer, Integer> calcMap = ATMCalcHelper.calcNumberOfRequiredBanknote(requiredNumberOfBanknotes);
         for (Cassette cassette : cassettes) {
             for (Map.Entry<Integer, Integer> map : calcMap.entrySet()) {
                 if (cassette.getDenomination() == map.getKey()) {

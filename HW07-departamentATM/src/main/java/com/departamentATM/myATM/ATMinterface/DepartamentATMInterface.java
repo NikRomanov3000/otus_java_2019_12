@@ -1,4 +1,4 @@
-package com.departamentATM.DepartmentPatrens.myATM;
+package com.departamentATM.myATM.ATMinterface;
 
 public interface DepartamentATMInterface {
     int getBalance();

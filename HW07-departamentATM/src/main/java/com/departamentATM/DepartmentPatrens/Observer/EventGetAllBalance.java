@@ -1,6 +1,6 @@
 package com.departamentATM.DepartmentPatrens.Observer;
 
-import com.departamentATM.DepartmentPatrens.myATM.ATMinterface.ATMInterface;
+import com.departamentATM.myATM.ATMinterface.ATMInterface;
 import java.util.List;
 
 public class EventGetAllBalance {

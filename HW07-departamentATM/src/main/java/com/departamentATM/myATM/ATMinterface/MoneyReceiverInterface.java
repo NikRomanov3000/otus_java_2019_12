@@ -1,7 +1,7 @@
-package com.departamentATM.DepartmentPatrens.myATM.ATMinterface;
+package com.departamentATM.myATM.ATMinterface;
 
-import com.departamentATM.DepartmentPatrens.myATM.Banknote;
-import com.departamentATM.DepartmentPatrens.myATM.Cassette;
+import com.departamentATM.myATM.Banknote;
+import com.departamentATM.myATM.Cassette;
 
 import java.util.List;
 

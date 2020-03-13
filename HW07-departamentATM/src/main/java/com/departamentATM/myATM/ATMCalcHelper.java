@@ -1,4 +1,4 @@
-package com.departamentATM.DepartmentPatrens.myATM;
+package com.departamentATM.myATM;
 
 import java.util.HashMap;
 import java.util.Map;

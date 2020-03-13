@@ -1,5 +1,6 @@
 package com.departamentATM.DepartmentPatrens.Memento;
 
+import com.departamentATM.DepartmentPatrens.Memento.Memento;
 import com.departamentATM.DepartmentPatrens.ObjectPool.PoolAtm;
 
 import java.util.ArrayDeque;

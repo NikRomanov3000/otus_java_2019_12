@@ -1,11 +1,11 @@
-package com.departamentATM.DepartmentPatrens;
+package com.departamentATM;
 
 import com.departamentATM.DepartmentPatrens.Memento.Originator;
 import com.departamentATM.DepartmentPatrens.ObjectPool.FactoryATM;
 import com.departamentATM.DepartmentPatrens.ObjectPool.PoolAtm;
 import com.departamentATM.DepartmentPatrens.Observer.EventGetAllBalance;
-import com.departamentATM.DepartmentPatrens.myATM.ATMinterface.ATMInterface;
-import com.departamentATM.DepartmentPatrens.myATM.DepartamentATMInterface;
+import com.departamentATM.myATM.ATMinterface.ATMInterface;
+import com.departamentATM.myATM.ATMinterface.DepartamentATMInterface;
 
 //Facade_DepartamentATM Реализует упращённые интерфейс работы со всеми банокматами, аля 3 кнопки для сложноый системы АТМ-ов
 public class FacadeDepartamentATM implements DepartamentATMInterface {
@@ -36,6 +36,14 @@ public class FacadeDepartamentATM implements DepartamentATMInterface {
         for (ATMInterface atm : poolAtm.getAll()) {
             System.out.println(atm);
         }
+    }
+
+    public void addATM(ATMInterface atm){
+        poolAtm.addATM(atm);
+    }
+
+    public void removeATM(ATMInterface atm){
+        poolAtm.removeATM(atm);
     }
 
     public ATMInterface getATM() {

@@ -1,6 +1,6 @@
 package com.departamentATM.DepartmentPatrens.ObjectPool;
 
-import com.departamentATM.DepartmentPatrens.myATM.ATMinterface.ATMInterface;
+import com.departamentATM.myATM.ATMinterface.ATMInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +34,14 @@ public class PoolAtm {
             throw new RuntimeException("all ATM are used!");
         }
         return atmPool.get(current++);
+    }
+
+    public void addATM(ATMInterface atm) {
+        atmPool.add(atm);
+    }
+
+    public void removeATM(ATMInterface atm) {
+        atmPool.remove(atm);
     }
 
     public List<ATMInterface> getAll() {
