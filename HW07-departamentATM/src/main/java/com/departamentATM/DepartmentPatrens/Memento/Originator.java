@@ -1,6 +1,6 @@
-package DepartmentPatrens.Memento;
+package com.departamentATM.DepartmentPatrens.Memento;
 
-import DepartmentPatrens.ObjectPool.PoolAtm;
+import com.departamentATM.DepartmentPatrens.ObjectPool.PoolAtm;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

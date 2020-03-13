@@ -1,12 +1,12 @@
-package DepartmentPatrens.ObjectPool;
+package com.departamentATM.DepartmentPatrens.ObjectPool;
 
-import myATM.ATMinterface.ATM_interface;
+import com.departamentATM.DepartmentPatrens.myATM.ATMinterface.ATMInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PoolAtm {
-    private final List<ATM_interface> atmPool;
+    private final List<ATMInterface> atmPool;
     private int current = 0;
     private int saveSize;
     private FactoryATM saveFactory;
@@ -16,27 +16,27 @@ public class PoolAtm {
         this.saveFactory = factory;
         atmPool = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
-            ATM_interface atm = factory.create();
+            ATMInterface atm = factory.create();
             atmPool.add(atm);
         }
     }
 
-    public PoolAtm(PoolAtm pool) { //всё ради Memento! ГЛУБОКОЕ КОПИРВАНИЕ ОБЪЕКТОВ
+    public PoolAtm(PoolAtm pool) {
         this.atmPool = new ArrayList<>();
         for (int i = 0; i < pool.saveSize; i++) {
-            ATM_interface atm = pool.saveFactory.create();
+            ATMInterface atm = pool.saveFactory.create();
             atmPool.add(atm);
         }
     }
 
-    public ATM_interface get() {
+    public ATMInterface get() {
         if (atmPool.size() == current) {
             throw new RuntimeException("all ATM are used!");
         }
         return atmPool.get(current++);
     }
 
-    public List<ATM_interface> getAll() {
+    public List<ATMInterface> getAll() {
         return atmPool;
     }
 

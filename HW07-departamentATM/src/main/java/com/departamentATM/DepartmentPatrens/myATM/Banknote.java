@@ -1,4 +1,4 @@
-package myATM;
+package com.departamentATM.DepartmentPatrens.myATM;
 
 public class Banknote {
     private final int denomination;

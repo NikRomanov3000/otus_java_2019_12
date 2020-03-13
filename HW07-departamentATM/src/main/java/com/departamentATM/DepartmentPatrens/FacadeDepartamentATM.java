@@ -1,18 +1,19 @@
-import DepartmentPatrens.Memento.Originator;
-import DepartmentPatrens.ObjectPool.FactoryATM;
-import DepartmentPatrens.ObjectPool.PoolAtm;
-import DepartmentPatrens.Observer.EventGetAllBalance;
-import DepartmentPatrens.Observer.EventRefreshAll;
-import myATM.ATMinterface.ATM_interface;
-import myATM.DepartamentATM_interface;
+package com.departamentATM.DepartmentPatrens;
+
+import com.departamentATM.DepartmentPatrens.Memento.Originator;
+import com.departamentATM.DepartmentPatrens.ObjectPool.FactoryATM;
+import com.departamentATM.DepartmentPatrens.ObjectPool.PoolAtm;
+import com.departamentATM.DepartmentPatrens.Observer.EventGetAllBalance;
+import com.departamentATM.DepartmentPatrens.myATM.ATMinterface.ATMInterface;
+import com.departamentATM.DepartmentPatrens.myATM.DepartamentATMInterface;
 
 //Facade_DepartamentATM Реализует упращённые интерфейс работы со всеми банокматами, аля 3 кнопки для сложноый системы АТМ-ов
-public class Facade_DepartamentATM implements DepartamentATM_interface {
+public class FacadeDepartamentATM implements DepartamentATMInterface {
     private PoolAtm poolAtm;
     private final int numberOfAtm;
     private final Originator originator;
 
-    public Facade_DepartamentATM(int numberOfAtm) {
+    public FacadeDepartamentATM(int numberOfAtm) {
         poolAtm = new PoolAtm(numberOfAtm, new FactoryATM());
         originator = new Originator();
         originator.saveState(poolAtm);
@@ -20,7 +21,7 @@ public class Facade_DepartamentATM implements DepartamentATM_interface {
     }
 
     @Override
-    public int getBalance() { //Observer balance of all atms
+    public int getBalance() {
         EventGetAllBalance balance = new EventGetAllBalance(poolAtm.getAll());
         return balance.getBalanceOfAllAtms();
     }
@@ -30,19 +31,14 @@ public class Facade_DepartamentATM implements DepartamentATM_interface {
         poolAtm = originator.restoreState();
     }
 
-    public void RefreshAllObserver() { //Observer refresh
-        EventRefreshAll refresher = new EventRefreshAll(poolAtm.getAll());
-        refresher.refreshAll();
-    }
-
     @Override
     public void showAllATM() {
-        for (ATM_interface atm : poolAtm.getAll()) {
+        for (ATMInterface atm : poolAtm.getAll()) {
             System.out.println(atm);
         }
     }
 
-    public ATM_interface getATM() {
+    public ATMInterface getATM() {
         return poolAtm.get();
     }
 }

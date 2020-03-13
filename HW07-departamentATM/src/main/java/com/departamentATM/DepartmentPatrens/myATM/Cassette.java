@@ -1,10 +1,10 @@
-package myATM;
+package com.departamentATM.DepartmentPatrens.myATM;
 
-import myATM.ATMinterface.Cassette_interface;
+import com.departamentATM.DepartmentPatrens.myATM.ATMinterface.CassetteInterface;
 
 import java.util.LinkedList;
 
-public class Cassette implements Cassette_interface {
+public class Cassette implements CassetteInterface {
     private int numberOfBanknotes;
     private final int denominationOfBanknotes;
     private static final int MAX_NUMBER_OF_BANKNOTES = 2500;

@@ -1,15 +1,15 @@
-package myATM;
+package com.departamentATM.DepartmentPatrens.myATM;
 
-import myATM.ATMinterface.MoneyReceiver_interface;
+import com.departamentATM.DepartmentPatrens.myATM.ATMinterface.MoneyReceiverInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static myATM.ATMCalcHelper.calcNumberOfRequiredBanknote;
+import static com.departamentATM.DepartmentPatrens.myATM.ATMCalcHelper.calcNumberOfRequiredBanknote;
 
 
-public class MoneyReceiver implements MoneyReceiver_interface {
+public class MoneyReceiver implements MoneyReceiverInterface {
     @Override
     public void addBanknoteToATM(Banknote banknote, List<Cassette> cassettes) {
         MoneyChecker MoneyChecker = new MoneyChecker();

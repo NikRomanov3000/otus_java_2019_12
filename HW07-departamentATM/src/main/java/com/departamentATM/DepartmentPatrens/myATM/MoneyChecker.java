@@ -1,12 +1,12 @@
-package myATM;
+package com.departamentATM.DepartmentPatrens.myATM;
 
-import myATM.ATMinterface.MoneyChecker_interface;
+import com.departamentATM.DepartmentPatrens.myATM.ATMinterface.MoneyCheckerInterface;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MoneyChecker implements MoneyChecker_interface {
+public class MoneyChecker implements MoneyCheckerInterface {
     private int ATM_Balance;
 
     public MoneyChecker() {

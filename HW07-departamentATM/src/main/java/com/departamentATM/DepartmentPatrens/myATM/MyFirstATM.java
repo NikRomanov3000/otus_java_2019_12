@@ -1,12 +1,12 @@
-package myATM;
+package com.departamentATM.DepartmentPatrens.myATM;
 
-import myATM.ATMinterface.ATM_interface;
+import com.departamentATM.DepartmentPatrens.myATM.ATMinterface.ATMInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MyFirstATM implements ATM_interface {
+public class MyFirstATM implements ATMInterface {
     private List<Cassette> cassettes = new ArrayList<>();
     private MoneyReceiver moneyReceiver;
 
@@ -40,6 +40,6 @@ public class MyFirstATM implements ATM_interface {
 
     @Override
     public String toString() {
-        return "My First ATM";
+        return "My First ATM, id: " + hashCode();
     }
 }

@@ -1,10 +1,10 @@
-package myATM.ATMinterface;
+package com.departamentATM.DepartmentPatrens.myATM.ATMinterface;
 
-import myATM.Banknote;
+import com.departamentATM.DepartmentPatrens.myATM.Banknote;
 
 import java.util.List;
 
-public interface ATM_interface {
+public interface ATMInterface {
     int getATMBalance();
     void refreshATMCassettes();
     void addBanknoteToAtm(Banknote banknote);

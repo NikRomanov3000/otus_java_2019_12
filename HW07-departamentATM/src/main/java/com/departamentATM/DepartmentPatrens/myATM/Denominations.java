@@ -1,4 +1,4 @@
-package myATM;
+package com.departamentATM.DepartmentPatrens.myATM;
 
 import java.util.ArrayList;
 import java.util.Collections;

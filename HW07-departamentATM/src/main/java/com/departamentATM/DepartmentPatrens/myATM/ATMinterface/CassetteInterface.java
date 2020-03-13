@@ -1,7 +1,7 @@
-package myATM.ATMinterface;
-import myATM.Banknote;
+package com.departamentATM.DepartmentPatrens.myATM.ATMinterface;
+import com.departamentATM.DepartmentPatrens.myATM.Banknote;
 
-public interface Cassette_interface {
+public interface CassetteInterface {
     int getNumberOfBanknotes();
 
     int getDenomination();
