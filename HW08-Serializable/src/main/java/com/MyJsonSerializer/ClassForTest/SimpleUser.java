@@ -1,4 +1,4 @@
-package com.MyJsonSerializer.ClassesForTest;
+package com.MyJsonSerializer.ClassForTest;
 
 public class SimpleUser {
     String name = "Nikita";

@@ -1,4 +1,4 @@
-package com.MyJsonSerializer.ClassesForTest;
+package com.MyJsonSerializer;
 
 import javax.json.*;
 import java.lang.reflect.Array;

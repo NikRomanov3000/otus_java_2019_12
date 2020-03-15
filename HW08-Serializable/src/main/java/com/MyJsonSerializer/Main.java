@@ -1,4 +1,6 @@
-package com.MyJsonSerializer.ClassesForTest;
+package com.MyJsonSerializer;
+import com.MyJsonSerializer.ClassForTest.SimpleUser;
+import com.MyJsonSerializer.ClassForTest.User;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
