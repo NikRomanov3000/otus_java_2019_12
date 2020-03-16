@@ -13,6 +13,5 @@ public class Main {
         System.out.println("Gson result:   " + gsonResult);
         System.out.println("myJson result: "+ myResult);
         System.out.println("Test status: "+ gsonResult.equals(myResult));
-
     }
 }

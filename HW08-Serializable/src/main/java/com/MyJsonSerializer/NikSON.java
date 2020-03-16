@@ -3,6 +3,7 @@ package com.MyJsonSerializer;
 import javax.json.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.math.BigInteger;
 import java.util.Collection;
 
 
@@ -19,28 +20,28 @@ public class NikSON {
             field.setAccessible(true);
             if (field.get(obj) != null) {
                 if (field.getType().isPrimitive()) { // for Primitive
-                    result.add(field.getName(), String.valueOf(field.get(obj)));
+                    addPrimitive(field, obj, result);
                 }
 
                 if (field.getType().isArray()) { //for Array
-
-                    var jsonArray = Json.createArrayBuilder();
+                    //var jsonArray = Json.createArrayBuilder();
                     int length = Array.getLength(field.get(obj));
                     Object[] array = new Object[length];
 
                     for (int i = 0; i < length; i++) {
                         array[i] = Array.get(field.get(obj), i);
                         if (checkPrimitiveClass(array[i].getClass())) {
-                            jsonArray.add(String.valueOf(array[i]));
+                            var jsonArray = addPrimitiveToArray(field, obj);
+                            result.add(field.getName(), jsonArray.build());
                         } else {
                             if (String.class.isAssignableFrom(field.getType())) {
                                 result.add(field.getName(), field.get(obj).toString());
                             } else {
-                                jsonArray.add(createJSON(array[i]));
+                                var jsonArray = Json.createArrayBuilder().add(createJSON(array[i]));
+                                result.add(field.getName(), jsonArray.build());
                             }
                         }
                     }
-                    result.add(field.getName(), jsonArray.build());
                 }
 
                 if (Iterable.class.isAssignableFrom(field.getType())) { // for Collection
@@ -58,6 +59,54 @@ public class NikSON {
             }
         }
         return result.build();
+    }
+
+    private void addPrimitive(Field field, Object object, JsonObjectBuilder result) throws IllegalAccessException {
+        if (byte.class.isAssignableFrom(field.getType())
+                || short.class.isAssignableFrom(field.getType())
+                || int.class.isAssignableFrom(field.getType())) {
+            result.add(field.getName(), field.getInt(object));
+        }
+        if (long.class.isAssignableFrom(field.getType())) {
+            result.add(field.getName(), field.getLong(object));
+        }
+        if (boolean.class.isAssignableFrom(field.getType())) {
+            result.add(field.getName(), field.getBoolean(object));
+        }
+        if (float.class.isAssignableFrom(field.getType())
+                || double.class.isAssignableFrom(field.getType())
+        ) {
+            result.add(field.getName(), field.getDouble(object));
+        }
+        if (char.class.isAssignableFrom(field.getType())) {
+            result.add(field.getName(), String.valueOf(field.get(object)));
+        }
+    }
+
+    private JsonArrayBuilder addPrimitiveToArray(Field field, Object object) throws IllegalAccessException {
+        var result = Json.createArrayBuilder();
+
+        if (byte.class.isAssignableFrom(field.getType())
+                || short.class.isAssignableFrom(field.getType())
+                || int.class.isAssignableFrom(field.getType())) {
+            result.add(field.getInt(object));
+        }
+        if (long.class.isAssignableFrom(field.getType())) {
+            result.add(field.getLong(object));
+        }
+        if (boolean.class.isAssignableFrom(field.getType())) {
+            result.add(field.getBoolean(object));
+        }
+        if (float.class.isAssignableFrom(field.getType())
+                || double.class.isAssignableFrom(field.getType())
+        ) {
+            result.add(field.getDouble(object));
+        }
+        if (char.class.isAssignableFrom(field.getType())) {
+            result.add(String.valueOf(field.get(object)));
+        }
+
+        return result;
     }
 
     private boolean checkPrimitiveClass(Object object) {
