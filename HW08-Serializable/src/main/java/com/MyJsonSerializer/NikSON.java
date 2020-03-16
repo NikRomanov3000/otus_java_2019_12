@@ -3,7 +3,6 @@ package com.MyJsonSerializer;
 import javax.json.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
-import java.math.BigInteger;
 import java.util.Collection;
 
 
@@ -24,24 +23,23 @@ public class NikSON {
                 }
 
                 if (field.getType().isArray()) { //for Array
-                    //var jsonArray = Json.createArrayBuilder();
+                    var jsonArray = Json.createArrayBuilder();
                     int length = Array.getLength(field.get(obj));
                     Object[] array = new Object[length];
 
                     for (int i = 0; i < length; i++) {
                         array[i] = Array.get(field.get(obj), i);
                         if (checkPrimitiveClass(array[i].getClass())) {
-                            var jsonArray = addPrimitiveToArray(field, obj);
-                            result.add(field.getName(), jsonArray.build());
+                            jsonArray = addPrimitiveToArray(array[i], jsonArray);
                         } else {
                             if (String.class.isAssignableFrom(field.getType())) {
-                                result.add(field.getName(), field.get(obj).toString());
+                                result.add(field.getName(), field.get(array[i]).toString());
                             } else {
-                                var jsonArray = Json.createArrayBuilder().add(createJSON(array[i]));
-                                result.add(field.getName(), jsonArray.build());
+                                jsonArray.add(createJSON(array[i]));
                             }
                         }
                     }
+                    result.add(field.getName(), jsonArray.build());
                 }
 
                 if (Iterable.class.isAssignableFrom(field.getType())) { // for Collection
@@ -73,9 +71,10 @@ public class NikSON {
         if (boolean.class.isAssignableFrom(field.getType())) {
             result.add(field.getName(), field.getBoolean(object));
         }
-        if (float.class.isAssignableFrom(field.getType())
-                || double.class.isAssignableFrom(field.getType())
-        ) {
+        if (float.class.isAssignableFrom(field.getType())) {
+            result.add(field.getName(), field.getFloat(object));
+        }
+        if (double.class.isAssignableFrom(field.getType())) {
             result.add(field.getName(), field.getDouble(object));
         }
         if (char.class.isAssignableFrom(field.getType())) {
@@ -83,29 +82,28 @@ public class NikSON {
         }
     }
 
-    private JsonArrayBuilder addPrimitiveToArray(Field field, Object object) throws IllegalAccessException {
-        var result = Json.createArrayBuilder();
-
-        if (byte.class.isAssignableFrom(field.getType())
-                || short.class.isAssignableFrom(field.getType())
-                || int.class.isAssignableFrom(field.getType())) {
-            result.add(field.getInt(object));
+    private JsonArrayBuilder addPrimitiveToArray(Object object, JsonArrayBuilder result) {
+        if (Byte.class.isAssignableFrom(object.getClass())
+                || Short.class.isAssignableFrom(object.getClass())
+                || Integer.class.isAssignableFrom(object.getClass())) {
+            result.add((int) object);
         }
-        if (long.class.isAssignableFrom(field.getType())) {
-            result.add(field.getLong(object));
+        if (Long.class.isAssignableFrom(object.getClass())) {
+            result.add((long) object);
         }
-        if (boolean.class.isAssignableFrom(field.getType())) {
-            result.add(field.getBoolean(object));
+        if (Boolean.class.isAssignableFrom(object.getClass())) {
+            result.add((boolean) object);
         }
-        if (float.class.isAssignableFrom(field.getType())
-                || double.class.isAssignableFrom(field.getType())
-        ) {
-            result.add(field.getDouble(object));
+        if (Float.class.isAssignableFrom(object.getClass())) {
+            double res = (float) object;
+            result.add(res);
         }
-        if (char.class.isAssignableFrom(field.getType())) {
-            result.add(String.valueOf(field.get(object)));
+        if (Double.class.isAssignableFrom(object.getClass())) {
+            result.add((double) object);
         }
-
+        if (Character.class.isAssignableFrom(object.getClass())) {
+            result.add(String.valueOf(object));
+        }
         return result;
     }
 

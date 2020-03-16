@@ -11,7 +11,7 @@ public class User {
     byte someByte = 9;
     short someShort = 512;
     double someDouble = 931924.124;
-    float someFloat = 5.2f;
+    float someFloat = 5.3f;
     long someLong = 9L;
     boolean checkJava = true;
     char favoriteLetter = 'R';
