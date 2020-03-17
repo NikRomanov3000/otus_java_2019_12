@@ -72,13 +72,13 @@ public class NikSON {
             result.add(field.getName(), field.getBoolean(object));
         }
         if (float.class.isAssignableFrom(field.getType())) {
-            result.add(field.getName(), field.getFloat(object));
+            result.add(field.getName(), Float.parseFloat(String.valueOf(field.get(object))));
         }
         if (double.class.isAssignableFrom(field.getType())) {
             result.add(field.getName(), field.getDouble(object));
         }
         if (char.class.isAssignableFrom(field.getType())) {
-            result.add(field.getName(), String.valueOf(field.get(object)));
+            result.add(field.getName(),String.valueOf(field.get(object)));
         }
     }
 
