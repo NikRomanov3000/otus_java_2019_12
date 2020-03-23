@@ -1,6 +1,6 @@
 package MyJdbcOrm.core.sessionmanager;
 
-public interface SessionManager {
+public interface SessionManager extends AutoCloseable {
     void beginSession();
 
     void commitSession();

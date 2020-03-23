@@ -1,6 +1,9 @@
 package MyJdbcOrm.core.model;
 
+import MyJdbcOrm.core.annotations.Id;
+
 public class User {
+    @Id
     private long id;
     private String name;
     private int age;

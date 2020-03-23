@@ -12,8 +12,6 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Optional;
 
-
-
 public class UserDaoJdbc implements UserDao {
     private static Logger logger = LoggerFactory.getLogger(UserDaoJdbc.class);
 
@@ -45,9 +43,9 @@ public class UserDaoJdbc implements UserDao {
     }
 
     @Override
-    public long saveUser(User user) {
+    public long saveUser(User appuser) {
         try{
-            return dbExecutor.insertRecord(getConnection(),"insert into user(name) values (?)", Collections.singletonList(user.getName()));
+            return dbExecutor.insertRecord(getConnection(),"insert into appuser(name) values (?)", Collections.singletonList(appuser.getName()));
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);
             throw new UserDaoException(ex);
