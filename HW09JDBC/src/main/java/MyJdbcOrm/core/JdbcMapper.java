@@ -35,24 +35,26 @@ public class JdbcMapper {
         return String.valueOf(resultQuery);
     }
 
-    public String createSQLSelectByParam(Class<?> someClass, String classFieldName, Object param) {
+    public String createSQLSelectByParam(Class<?> someClass, String fieldName, Object param) {
         Field[] classFields = someClass.getDeclaredFields();
         StringBuffer resultQuery = new StringBuffer(createSQLSelect(someClass));
-        boolean haveField = false;
-        for (Field field : classFields) {
-            field.setAccessible(true);
-            if (field.getName().equals(classFieldName)) {
-                haveField = true;
-                resultQuery.insert(resultQuery.length(), " where " + classFieldName + " = " + String.valueOf(param));
+        boolean checker = checkField(someClass, fieldName);
+        if (checker) {
+            for (Field field : classFields) {
+                if (field.getName() == fieldName)
+                    resultQuery.insert(resultQuery.length(), " where " + fieldName + " = " + String.valueOf(param));
             }
         }
-        return haveField ? String.valueOf(resultQuery) : "Field: " + classFieldName + " Not Found";
+        //return haveField ? String.valueOf(resultQuery) : "Field: " + classFieldName + " Not Found";
+        if (checker)
+            return String.valueOf(resultQuery);
+        else throw new RuntimeException("Field: " + fieldName + " Not Found");
     }
 
-    public String createSQLInsert(Class<?> someClass, List<Object> params) {
+    public String createSQLInsert(Class<?> someClass, List<String> params) {
         String tableName = someClass.getSimpleName();
         Field[] classFields = someClass.getDeclaredFields();
-        StringBuffer resultQuery = new StringBuffer("insert into " + someClass.getSimpleName()+ '(');
+        StringBuffer resultQuery = new StringBuffer("insert into " + someClass.getSimpleName() + '(');
         Field idField = getFieldWithAnnotation(classFields);
 
         if (!Objects.nonNull(idField))
@@ -66,10 +68,41 @@ public class JdbcMapper {
                     resultQuery.insert(resultQuery.length(), " " + classFields[i].getName() + ',');
             }
         }
-        for(Object object : params){
-            resultQuery.insert(resultQuery.length(), ')' + " values ("+String.valueOf(object)+',');
+        resultQuery.insert(resultQuery.length(), ')' + " values (");
+
+        for (int i = 0; i < params.size(); i++) {
+            if (classFields[i + 1].getType().equals(String.class))
+                resultQuery.insert(resultQuery.length(), "'" + String.valueOf(params.get(i)) + "'" + ',');
+            else
+                resultQuery.insert(resultQuery.length(), String.valueOf(params.get(i)) + ',');
         }
 
-        return String.valueOf(resultQuery.insert(resultQuery.length()-1,')').replace(resultQuery.length()-1, resultQuery.length(), " "));
+        return String.valueOf(resultQuery.insert(resultQuery.length() - 1, ')').replace(resultQuery.length() - 1, resultQuery.length(), " "));
     }
+
+    public String createSQLUpdate(Class<?> someClass, String fieldName, Object valueForUpdate) {
+        StringBuffer resultQuery = new StringBuffer();
+
+        if (checkField(someClass, fieldName)){
+            if(valueForUpdate.getClass().equals(String.class))
+                resultQuery.insert(resultQuery.length(), "update " + someClass.getSimpleName() + " set " + fieldName + " = '" + String.valueOf(valueForUpdate)+"'");
+            else
+                resultQuery.insert(resultQuery.length(), "update " + someClass.getSimpleName() + " set " + fieldName + " = " + String.valueOf(valueForUpdate));
+        }
+
+        else throw new RuntimeException("Can not find field: " + fieldName);
+
+        return String.valueOf(resultQuery);
+    }
+
+    private boolean checkField(Class<?> someClass, String myField) {
+        Field[] fields = someClass.getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            if (field.getName() == myField)
+                return true;
+        }
+        return false;
+    }
+
 }
