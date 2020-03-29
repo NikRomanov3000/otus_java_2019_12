@@ -1,24 +1,17 @@
-package MyJdbcOrm.core;
+package MyJdbcOrm.jdbcHelper;
 
 import MyJdbcOrm.core.annotations.Id;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class JdbcMapper {
 
-    private Field getFieldWithAnnotation(Field[] fields) {
-        for (Field field : fields) {
-            field.setAccessible(true);
-            if (field.isAnnotationPresent(Id.class))
-                return field;
-        }
-        return null;
-    }
-
     public String createSQLSelect(Class<?> someClass) {
-        StringBuffer resultQuery = new StringBuffer("select");
+
+        StringBuilder resultQuery = new StringBuilder("select");
         Field[] classFields = someClass.getDeclaredFields();
 
         if (!Objects.nonNull(getFieldWithAnnotation(classFields)))
@@ -35,26 +28,23 @@ public class JdbcMapper {
         return String.valueOf(resultQuery);
     }
 
-    public String createSQLSelectByParam(Class<?> someClass, String fieldName, Object param) {
+    public String createSQLSelectByParam(Class<?> someClass, String fieldName) {
         Field[] classFields = someClass.getDeclaredFields();
-        StringBuffer resultQuery = new StringBuffer(createSQLSelect(someClass));
+        StringBuilder resultQuery = new StringBuilder(createSQLSelect(someClass));
         boolean checker = checkField(someClass, fieldName);
         if (checker) {
             for (Field field : classFields) {
                 if (field.getName() == fieldName)
-                    resultQuery.insert(resultQuery.length(), " where " + fieldName + " = " + String.valueOf(param));
+                    resultQuery.insert(resultQuery.length(), " where " + fieldName + " = (?)");
             }
-        }
-        //return haveField ? String.valueOf(resultQuery) : "Field: " + classFieldName + " Not Found";
-        if (checker)
             return String.valueOf(resultQuery);
-        else throw new RuntimeException("Field: " + fieldName + " Not Found");
+        } else throw new RuntimeException("Field: " + fieldName + " Not Found");
     }
 
-    public String createSQLInsert(Class<?> someClass, List<String> params) {
+    public String createSQLInsert(Class<?> someClass) {
         String tableName = someClass.getSimpleName();
         Field[] classFields = someClass.getDeclaredFields();
-        StringBuffer resultQuery = new StringBuffer("insert into " + someClass.getSimpleName() + '(');
+        StringBuilder resultQuery = new StringBuilder("insert into " + someClass.getSimpleName() + '(');
         Field idField = getFieldWithAnnotation(classFields);
 
         if (!Objects.nonNull(idField))
@@ -68,31 +58,22 @@ public class JdbcMapper {
                     resultQuery.insert(resultQuery.length(), " " + classFields[i].getName() + ',');
             }
         }
-        resultQuery.insert(resultQuery.length(), ')' + " values (");
+        resultQuery.insert(resultQuery.length(), ')' + " values (?)");
 
-        for (int i = 0; i < params.size(); i++) {
-            if (classFields[i + 1].getType().equals(String.class))
-                resultQuery.insert(resultQuery.length(), "'" + String.valueOf(params.get(i)) + "'" + ',');
-            else
-                resultQuery.insert(resultQuery.length(), String.valueOf(params.get(i)) + ',');
-        }
-
-        return String.valueOf(resultQuery.insert(resultQuery.length() - 1, ')').replace(resultQuery.length() - 1, resultQuery.length(), " "));
+        return String.valueOf(resultQuery);
     }
 
     public String createSQLUpdate(Class<?> someClass, String fieldName, Object valueForUpdate) {
-        StringBuffer resultQuery = new StringBuffer();
+        StringBuilder resultQuery = new StringBuilder();
 
-        if (checkField(someClass, fieldName)){
-            if(valueForUpdate.getClass().equals(String.class))
-                resultQuery.insert(resultQuery.length(), "update " + someClass.getSimpleName() + " set " + fieldName + " = '" + String.valueOf(valueForUpdate)+"'");
+        if (checkField(someClass, fieldName)) {
+            if (valueForUpdate.getClass().equals(String.class))
+                resultQuery.insert(resultQuery.length(), "update " + someClass.getSimpleName() + " set " + fieldName + " = '" + String.valueOf(valueForUpdate) + "'");
             else
                 resultQuery.insert(resultQuery.length(), "update " + someClass.getSimpleName() + " set " + fieldName + " = " + String.valueOf(valueForUpdate));
-        }
+        } else throw new RuntimeException("Can not find field: " + fieldName);
 
-        else throw new RuntimeException("Can not find field: " + fieldName);
-
-        return String.valueOf(resultQuery);
+        return String.valueOf(resultQuery.insert(resultQuery.length(), " where id = (?)"));
     }
 
     private boolean checkField(Class<?> someClass, String myField) {
@@ -103,6 +84,33 @@ public class JdbcMapper {
                 return true;
         }
         return false;
+    }
+
+    private Field getFieldWithAnnotation(Field[] fields) {
+        for (Field field : fields) {
+            field.setAccessible(true);
+            if (field.isAnnotationPresent(Id.class))
+                return field;
+        }
+        return null;
+    }
+
+
+    public List<String> getListFiledValue(Object obj) {
+        List<String> resultList = new ArrayList<>();
+        Field[] fields = obj.getClass().getDeclaredFields();
+
+        for (Field field : fields) {
+            field.setAccessible(true);
+            if (!field.isAnnotationPresent(Id.class)) {
+                try {
+                    resultList.add(String.valueOf(field.get(obj)));
+                } catch (IllegalAccessException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        }
+        return resultList;
     }
 
 }

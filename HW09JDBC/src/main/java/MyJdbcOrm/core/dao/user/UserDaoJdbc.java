@@ -1,15 +1,15 @@
-package MyJdbcOrm.core.dao;
+package MyJdbcOrm.core.dao.user;
 
 import MyJdbcOrm.core.DbExecutor;
 import MyJdbcOrm.core.model.User;
 import MyJdbcOrm.core.sessionmanager.SessionManager;
 import MyJdbcOrm.core.sessionmanager.SessionManagerJdbc;
+import MyJdbcOrm.jdbcHelper.JdbcMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Collections;
 import java.util.Optional;
 
 public class UserDaoJdbc implements UserDao {
@@ -17,16 +17,19 @@ public class UserDaoJdbc implements UserDao {
 
     private final SessionManagerJdbc sessionManager;
     private final DbExecutor<User> dbExecutor;
+    private final JdbcMapper jdbcMapper;
 
-    public UserDaoJdbc(SessionManagerJdbc sessionManager, DbExecutor<User> dbExecutor) {
+    public UserDaoJdbc(SessionManagerJdbc sessionManager, DbExecutor<User> dbExecutor,JdbcMapper jdbcMapper) {
         this.sessionManager = sessionManager;
         this.dbExecutor = dbExecutor;
+        this.jdbcMapper = jdbcMapper;
     }
 
     @Override
     public Optional<User> findById(long id) {
+        //"select id, name from user where id  = ?"
         try {
-            return dbExecutor.selectRecord(getConnection(), "select id, name from user where id  = ?", id, resultSet -> {
+            return dbExecutor.selectRecord(getConnection(), jdbcMapper.createSQLSelectByParam(User.class, "id"), id, resultSet -> {
                 try {
                     if (resultSet.next()) {
                         return new User(resultSet.getLong("id"), resultSet.getString("name"), resultSet.getInt("age"));
@@ -43,9 +46,10 @@ public class UserDaoJdbc implements UserDao {
     }
 
     @Override
-    public long saveUser(User appuser) {
+    public long saveUser(User user) {
+
         try{
-            return dbExecutor.insertRecord(getConnection(),"insert into appuser(name) values (?)", Collections.singletonList(appuser.getName()));
+            return dbExecutor.insertRecord(getConnection(),jdbcMapper.createSQLInsert(User.class), jdbcMapper.getListFiledValue(user));
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);
             throw new UserDaoException(ex);

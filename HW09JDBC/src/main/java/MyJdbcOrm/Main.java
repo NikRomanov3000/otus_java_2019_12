@@ -1,62 +1,58 @@
 package MyJdbcOrm;
 
 import MyJdbcOrm.core.DbExecutor;
+import MyJdbcOrm.core.dao.account.AccountDaoJdbc;
+import MyJdbcOrm.core.dao.user.UserDaoJdbc;
+import MyJdbcOrm.core.model.Account;
 import MyJdbcOrm.core.model.User;
+import MyJdbcOrm.core.service.account.DbServiceAccountImpl;
+import MyJdbcOrm.core.service.user.DbServerUserImpl;
+import MyJdbcOrm.core.sessionmanager.SessionManager;
+import MyJdbcOrm.core.sessionmanager.SessionManagerJdbc;
+import MyJdbcOrm.jdbcHelper.JdbcMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.Optional;
+import java.util.List;
 
 public class Main {
     private static final String URL = "jdbc:h2:mem:";
     private static Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws SQLException {
-          Main main = new Main();
-        /*List <String> someListOfParam = new ArrayList<>(Arrays.asList("Nikita", "20"));
-        JdbcMapper myMapper = new JdbcMapper();
+        Main main = new Main();
+        List<String> someListOfParam = new ArrayList<>(Arrays.asList("Nikita", "20"));
+/*
 
         String sql = myMapper.createSQLSelect(User.class);
-        String sqlParam = myMapper.createSQLSelectByParam(Account.class, "type", 2);
-        String sqlInsert = myMapper.createSQLInsert(User.class, someListOfParam);
+        String sqlParam = myMapper.createSQLSelectByParam(Account.class, "type");
+        String sqlInsert = myMapper.createSQLInsert(User.class);
         String sqlUpdate = myMapper.createSQLUpdate(User.class, "name", "Mike");
         System.out.println(sql);
         System.out.println(sqlParam);
         System.out.println(sqlInsert);
         System.out.println(sqlUpdate);
-        */
-
-       try (Connection connection = DriverManager.getConnection(URL)) {
+*/
+        try (Connection connection = DriverManager.getConnection(URL)) {
             connection.setAutoCommit(false);
-            main.createTable(connection);
+            JdbcMapper myMapper = new JdbcMapper();
+            DbExecutor<User> userDbExecutor = new DbExecutor<>();
+            DbExecutor<Account> accountDbExecutor = new DbExecutor<>();
 
-            DbExecutor<User> executor = new DbExecutor<>();
-            long userId = executor.insertRecord(connection, "insert into user(name) values (?)", Collections.singletonList("testUserName"));
+            SessionManagerJdbc sessionManager = new SessionManagerJdbc(dataSource); //не могу понять, как тут указать data source
+            DbServerUserImpl dbServerUser = new DbServerUserImpl(new UserDaoJdbc( sessionManager ,userDbExecutor, myMapper));
+            DbServiceAccountImpl dbServiceAccount = new DbServiceAccountImpl (new AccountDaoJdbc(sessionManager, accountDbExecutor, myMapper ));
+           /* long userId = executor.insertRecord(connection, myMapper.createSQLInsert(User.class), Collections.singletonList("testUserName"));
             logger.info("created user:{}", userId);
-            connection.commit();
+            connection.commit();*/
 
-            Optional<User> user = executor.selectRecord(connection, "select id, name from user where id  = ?", userId, resultSet -> {
-                try {
-                    if (resultSet.next()) {
-                        return new User(resultSet.getLong("id"), resultSet.getString("name"), resultSet.getInt("age"));
-                    }
-                } catch (SQLException e) {
-                    logger.error(e.getMessage(), e);
-                }
-                return null;
-            });
-            System.out.println(user);
-        }
-    }
 
-    private void createTable(Connection connection) throws SQLException {
-        try (PreparedStatement pst = connection.prepareStatement("create table user(id long auto_increment, name varchar(50), age int)")) {
-            pst.executeUpdate();
         }
     }
 }

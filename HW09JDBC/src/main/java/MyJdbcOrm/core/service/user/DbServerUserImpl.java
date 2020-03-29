@@ -1,7 +1,8 @@
-package MyJdbcOrm.core.service;
+package MyJdbcOrm.core.service.user;
 
-import MyJdbcOrm.core.dao.UserDao;
+import MyJdbcOrm.core.dao.user.UserDao;
 import MyJdbcOrm.core.model.User;
+import MyJdbcOrm.core.service.DbServiceException;
 import MyJdbcOrm.core.sessionmanager.SessionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

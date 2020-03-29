@@ -1,4 +1,4 @@
-package MyJdbcOrm.core.dao;
+package MyJdbcOrm.core.dao.user;
 
 import MyJdbcOrm.core.model.User;
 import MyJdbcOrm.core.sessionmanager.SessionManager;

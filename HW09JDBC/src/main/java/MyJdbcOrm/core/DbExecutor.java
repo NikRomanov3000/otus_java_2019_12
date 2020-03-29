@@ -37,4 +37,18 @@ public class DbExecutor<T> {
             }
         }
     }
+
+    public long updateField(Connection connection, String sql, long id) throws SQLException {
+        Savepoint savepoint = connection.setSavepoint("savePointName");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setLong(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                return resultSet.getInt(1);
+            }
+        } catch (SQLException ex) {
+            connection.rollback(savepoint);
+            logger.error(ex.getMessage(), ex);
+            throw ex;
+        }
+    }
 }
