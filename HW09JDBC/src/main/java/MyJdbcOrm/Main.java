@@ -48,10 +48,6 @@ public class Main {
             SessionManagerJdbc sessionManager = new SessionManagerJdbc(dataSource); //не могу понять, как тут указать data source
             DbServerUserImpl dbServerUser = new DbServerUserImpl(new UserDaoJdbc( sessionManager ,userDbExecutor, myMapper));
             DbServiceAccountImpl dbServiceAccount = new DbServiceAccountImpl (new AccountDaoJdbc(sessionManager, accountDbExecutor, myMapper ));
-           /* long userId = executor.insertRecord(connection, myMapper.createSQLInsert(User.class), Collections.singletonList("testUserName"));
-            logger.info("created user:{}", userId);
-            connection.commit();*/
-
 
         }
     }

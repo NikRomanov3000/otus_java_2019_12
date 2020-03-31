@@ -14,14 +14,16 @@ public class JdbcMapper {
         StringBuilder resultQuery = new StringBuilder("select");
         Field[] classFields = someClass.getDeclaredFields();
 
-        if (!Objects.nonNull(getFieldWithAnnotation(classFields)))
+        if (getFieldWithAnnotation(classFields) == null) {
             throw new RuntimeException("Can not generate SQL query. Annotation @Id not found");
+        }
 
         for (int i = 0; i < classFields.length; i++) {
-            if (i == classFields.length - 1)
+            if (i == classFields.length - 1) {
                 resultQuery.insert(resultQuery.length(), " " + classFields[i].getName());
-            else
+            } else {
                 resultQuery.insert(resultQuery.length(), " " + classFields[i].getName() + ',');
+            }
         }
         resultQuery.insert(resultQuery.length(), " from " + someClass.getSimpleName());
 
@@ -34,7 +36,7 @@ public class JdbcMapper {
         boolean checker = checkField(someClass, fieldName);
         if (checker) {
             for (Field field : classFields) {
-                if (field.getName() == fieldName)
+                if (field.getName().equals(fieldName))
                     resultQuery.insert(resultQuery.length(), " where " + fieldName + " = (?)");
             }
             return String.valueOf(resultQuery);
@@ -47,8 +49,9 @@ public class JdbcMapper {
         StringBuilder resultQuery = new StringBuilder("insert into " + someClass.getSimpleName() + '(');
         Field idField = getFieldWithAnnotation(classFields);
 
-        if (!Objects.nonNull(idField))
+        if (idField == null) {
             throw new RuntimeException("Can not generate SQL query. Annotation @Id not found");
+        }
 
         for (int i = 0; i < classFields.length; i++) {
             if (!classFields[i].equals(idField)) {
@@ -76,26 +79,6 @@ public class JdbcMapper {
         return String.valueOf(resultQuery.insert(resultQuery.length(), " where id = (?)"));
     }
 
-    private boolean checkField(Class<?> someClass, String myField) {
-        Field[] fields = someClass.getDeclaredFields();
-        for (Field field : fields) {
-            field.setAccessible(true);
-            if (field.getName() == myField)
-                return true;
-        }
-        return false;
-    }
-
-    private Field getFieldWithAnnotation(Field[] fields) {
-        for (Field field : fields) {
-            field.setAccessible(true);
-            if (field.isAnnotationPresent(Id.class))
-                return field;
-        }
-        return null;
-    }
-
-
     public List<String> getListFiledValue(Object obj) {
         List<String> resultList = new ArrayList<>();
         Field[] fields = obj.getClass().getDeclaredFields();
@@ -113,4 +96,22 @@ public class JdbcMapper {
         return resultList;
     }
 
+    private boolean checkField(Class<?> someClass, String myField) {
+        Field[] fields = someClass.getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            if (field.getName().equals(myField))
+                return true;
+        }
+        return false;
+    }
+
+    private Field getFieldWithAnnotation(Field[] fields) {
+        for (Field field : fields) {
+            field.setAccessible(true);
+            if (field.isAnnotationPresent(Id.class))
+                return field;
+        }
+        return null;
+    }
 }
