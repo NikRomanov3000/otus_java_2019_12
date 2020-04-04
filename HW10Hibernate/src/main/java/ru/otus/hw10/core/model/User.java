@@ -1,6 +1,8 @@
 package ru.otus.hw10.core.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -16,12 +18,23 @@ public class User {
     @Column(name = "age")
     private int age;
 
+    @OneToOne(targetEntity = Address.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address userAddress;
+
+    @OneToMany(targetEntity = Phone.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "phone_id")
+    private List<Phone> userPhones;
+
     public User() {
     }
 
-    public User(String name, int age) {
+    public User(long id, String name, int age) {
+        this.id = id;
         this.name = name;
         this.age = age;
+        this.userAddress = null;
+        this.userPhones = new ArrayList<>();
     }
 
     public long getId() {
@@ -43,13 +56,24 @@ public class User {
     public void setAge(int age) {
         this.age = age;
     }
-/*
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
-    }*/
+
+    public Address getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(Address userAddress) {
+        this.userAddress = userAddress;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public List<Phone> getUserPhones() {
+        return userPhones;
+    }
+
+    public void addUserPhones(Phone phone) {
+        userPhones.add(phone);
+    }
 }

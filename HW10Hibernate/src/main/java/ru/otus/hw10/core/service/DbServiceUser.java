@@ -7,4 +7,5 @@ import java.util.Optional;
 public interface DbServiceUser {
     long saveUser(User user);
     Optional<User> getUser(long id);
+    long saveOrUpdate(User user);
 }

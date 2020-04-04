@@ -40,7 +40,6 @@ public class DbServiceUserImpl implements DbServiceUser {
             sessionManager.beginSession();
             try {
                 Optional<User> userOptional = userDao.findById(id);
-
                 logger.info("user: {}", userOptional.orElse(null));
                 return userOptional;
             } catch (Exception e) {
@@ -48,6 +47,23 @@ public class DbServiceUserImpl implements DbServiceUser {
                 sessionManager.rollbackSession();
             }
             return Optional.empty();
+        }
+    }
+
+    @Override
+    public long saveOrUpdate(User user) {
+        try (SessionManager sessionManager = userDao.getSessionManager()) {
+            sessionManager.beginSession();
+            try {
+                long userId = userDao.saveOrUpdate(user);
+                sessionManager.commitSession();
+                logger.info("updated user: {}", userId);
+                return userId;
+            } catch (Exception ex) {
+                logger.error(ex.getMessage(), ex);
+                sessionManager.rollbackSession();
+                throw new DbServiceException(ex);
+            }
         }
     }
 }
