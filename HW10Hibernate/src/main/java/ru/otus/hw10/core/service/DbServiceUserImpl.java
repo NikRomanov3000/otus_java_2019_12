@@ -17,24 +17,6 @@ public class DbServiceUserImpl implements DbServiceUser {
     }
 
     @Override
-    public long saveUser(User user) {
-        try (SessionManager sessionManager = userDao.getSessionManager()) {
-            sessionManager.beginSession();
-            try {
-                long userId = userDao.saveUser(user);
-                sessionManager.commitSession();
-
-                logger.info("created user: {}", userId);
-                return userId;
-            } catch (Exception ex) {
-                logger.error(ex.getMessage(), ex);
-                sessionManager.rollbackSession();
-                throw new DbServiceException(ex);
-            }
-        }
-    }
-
-    @Override
     public Optional<User> getUser(long id) {
         try (SessionManager sessionManager = userDao.getSessionManager()) {
             sessionManager.beginSession();
@@ -51,12 +33,30 @@ public class DbServiceUserImpl implements DbServiceUser {
     }
 
     @Override
+    public long saveUser(User user) {
+        try (SessionManager sessionManager = userDao.getSessionManager()) {
+            sessionManager.beginSession();
+            try {
+                long userId = userDao.saveUser(user);
+                sessionManager.commitSession();
+
+                logger.info("created user: {}", userId);
+                return userId;
+            } catch (Exception ex) {
+                logger.error(ex.getMessage(), ex);
+                sessionManager.rollbackSession();
+                throw new DbServiceException(ex);
+            }
+        }
+    }
+    @Override
     public long saveOrUpdate(User user) {
         try (SessionManager sessionManager = userDao.getSessionManager()) {
             sessionManager.beginSession();
             try {
                 long userId = userDao.saveOrUpdate(user);
                 sessionManager.commitSession();
+
                 logger.info("updated user: {}", userId);
                 return userId;
             } catch (Exception ex) {
