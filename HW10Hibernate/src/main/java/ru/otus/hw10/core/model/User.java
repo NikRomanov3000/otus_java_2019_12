@@ -1,11 +1,11 @@
 package ru.otus.hw10.core.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "app_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -20,11 +20,10 @@ public class User {
 
     @OneToOne(targetEntity = Address.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
-    private Address userAddress;
+    private Address address;
 
-    @OneToMany(targetEntity = Phone.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "phone_id")
-    private List<Phone> userPhones;
+    @OneToMany(targetEntity = Phone.class, mappedBy = "phone", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Phone> phones;
 
     public User() {
     }
@@ -33,8 +32,8 @@ public class User {
         this.id = id;
         this.name = name;
         this.age = age;
-        this.userAddress = null;
-        this.userPhones = new ArrayList<>();
+        this.address = null;
+        this.phones = new HashSet<>();
     }
 
     public long getId() {
@@ -58,22 +57,22 @@ public class User {
     }
 
     public Address getUserAddress() {
-        return userAddress;
+        return address;
     }
 
     public void setUserAddress(Address userAddress) {
-        this.userAddress = userAddress;
+        this.address = userAddress;
     }
 
     public void setId(long id) {
         this.id = id;
     }
 
-    public List<Phone> getUserPhones() {
-        return userPhones;
+    public Set<Phone> getUserPhones() {
+        return phones;
     }
 
     public void addUserPhones(Phone phone) {
-        userPhones.add(phone);
+        phones.add(phone);
     }
 }

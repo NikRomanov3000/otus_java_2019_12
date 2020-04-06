@@ -13,8 +13,16 @@ public class Address {
     @Column(name = "full_address")
     private String full_address;
 
-//    @OneToOne(mappedBy = "full_address")
-//    private User user;
+   @OneToOne(mappedBy = "address")
+    private User user;
+
+    public Address() {
+    }
+
+    public Address(String full_address) {
+        this.full_address = full_address;
+    }
+
 
     public long getId() {
         return id;
@@ -28,12 +36,11 @@ public class Address {
         this.full_address = full_address;
     }
 
-    public Address() {
+    public User getUser() {
+        return user;
     }
 
-    public Address(String full_address) {
-        this.full_address = full_address;
+    public void setUser(User user) {
+        this.user = user;
     }
-
-
 }

@@ -10,25 +10,37 @@ public class Phone {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "phone_number")
-    private String phone_number;
+    @Column(name = "phone")
+    private String phone;
 
-    public long getId() {
-        return id;
-    }
-
-    public String getPhone_number() {
-        return phone_number;
-    }
-
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
-    }
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Phone() {
     }
 
     public Phone(String phone_number) {
-        this.phone_number = phone_number;
+        this.phone = phone_number;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone_number) {
+        this.phone = phone_number;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

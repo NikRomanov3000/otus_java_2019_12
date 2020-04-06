@@ -54,7 +54,8 @@ public class UserDaoHibernate implements UserDao {
     public long saveOrUpdate(User user) {
         DatabaseSessionHibernate currentSession = sessionManager.getCurrentSession();
         try{
-            currentSession.getHibernateSession().saveOrUpdate(user);
+            Session hibernateSession = currentSession.getHibernateSession();
+            hibernateSession.saveOrUpdate(user);
             return user.getId();
         }catch (Exception ex){
             logger.error(ex.getMessage(), ex);
@@ -64,6 +65,6 @@ public class UserDaoHibernate implements UserDao {
 
     @Override
     public SessionManager getSessionManager() {
-        return null;
+        return sessionManager;
     }
 }

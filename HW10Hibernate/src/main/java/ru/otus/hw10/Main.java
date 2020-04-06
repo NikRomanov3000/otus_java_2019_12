@@ -18,8 +18,10 @@ import java.util.Optional;
 public class Main {
     private static Logger logger = LoggerFactory.getLogger(Main.class);
     private static final String HIBERNATE_CFG_XML_FILE_RESOURCE = "hibernate.cfg.xml";
+
     public static void main(String[] args) {
-        SessionFactory sessionFactory = HibernateUtils.buildSessionFactory(HIBERNATE_CFG_XML_FILE_RESOURCE, User.class);
+        SessionFactory sessionFactory = HibernateUtils.buildSessionFactory(HIBERNATE_CFG_XML_FILE_RESOURCE,
+                User.class, Address.class, Phone.class);
 
         SessionManagerHibernate sessionManager = new SessionManagerHibernate(sessionFactory);
         UserDao userDao = new UserDaoHibernate(sessionManager);
@@ -29,14 +31,16 @@ public class Main {
 
         dbServiceUser.saveUser(nikita);
         Optional<User> users = dbServiceUser.getUser(1);
-
+/*
         nikita.addUserPhones(new Phone("88005553535"));
         nikita.setUserAddress(new Address("Moscow"));
         dbServiceUser.saveOrUpdate(nikita);
 
         users = dbServiceUser.getUser(1);
-
+*/
         sessionManager.close();
+
+        System.out.println(users);
     }
 
 }

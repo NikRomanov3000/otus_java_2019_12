@@ -42,50 +42,33 @@
         </dependency>
     </dependencies>
 
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <build>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.6.1</version>
+                    <artifactId>maven-assembly-plugin</artifactId>
                     <configuration>
-                        <source>1.8</source>
-                        <target>1.8</target>
+                        <descriptorRefs>
+                            <descriptorRef>jar-with-dependencies</descriptorRef>
+                        </descriptorRefs>
+                        <archive>
+                            <manifest>
+                                <mainClass>ru.otus.hw10.Main</mainClass>
+                            </manifest>
+                        </archive>
                     </configuration>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>${maven-enforcer-plugin.version}</version>
                     <executions>
                         <execution>
-                            <id>enforce-maven</id>
+                            <id>make-assembly</id>
+                            <phase>package</phase>
                             <goals>
-                                <goal>enforce</goal>
+                                <goal>single</goal>
                             </goals>
-                            <configuration>
-                                <rules>
-                                    <dependencyConvergence/>
-                                    <requireMavenVersion>
-                                        <version>${minimal.maven.version}</version>
-                                    </requireMavenVersion>
-                                </rules>
-                            </configuration>
                         </execution>
                     </executions>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-shade-plugin</artifactId>
-                    <version>${maven-shade-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>${maven-assembly-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
