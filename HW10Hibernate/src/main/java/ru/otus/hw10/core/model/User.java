@@ -22,8 +22,10 @@ public class User {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @OneToMany(targetEntity = Phone.class, mappedBy = "phone", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Phone.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "phone_id")
     private Set<Phone> phones;
+
 
     public User() {
     }

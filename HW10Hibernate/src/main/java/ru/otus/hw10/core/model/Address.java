@@ -13,7 +13,7 @@ public class Address {
     @Column(name = "full_address")
     private String full_address;
 
-   @OneToOne(mappedBy = "address")
+    @OneToOne(mappedBy = "address")
     private User user;
 
     public Address() {

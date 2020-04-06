@@ -28,8 +28,8 @@ public class Main {
         DbServiceUser dbServiceUser = new DbServiceUserImpl(userDao);
 
         User nikita = new User(1,"Никита", 20);
-        nikita.addUserPhones(new Phone("88005553535"));
-        nikita.setUserAddress(new Address("Moscow"));
+       nikita.addUserPhones(new Phone("88005553535"));
+       nikita.setUserAddress(new Address("Moscow"));
 
         dbServiceUser.saveUser(nikita);
         Optional<User> users = dbServiceUser.getUser(1);
@@ -42,7 +42,7 @@ public class Main {
 */
         sessionManager.close();
 
-        System.out.println(users);
+        System.out.println(users.get().getName());
     }
 
 }
