@@ -13,10 +13,8 @@ public class Phone {
     @Column(name = "phone")
     private String phone;
 
-    @ManyToOne()
+    @ManyToOne
     private User user;
-  //  @JoinColumn(name = "user_id")
-
 
     public Phone() {
     }

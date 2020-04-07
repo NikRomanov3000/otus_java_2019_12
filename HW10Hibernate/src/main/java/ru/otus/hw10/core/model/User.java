@@ -1,7 +1,9 @@
 package ru.otus.hw10.core.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,9 +25,8 @@ public class User {
     private Address address;
 
     @OneToMany(targetEntity = Phone.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "phone_id")
-    private Set<Phone> phones;
-
+    @JoinColumn(name="phone_id")
+    private List<Phone> phones;
 
     public User() {
     }
@@ -35,7 +36,7 @@ public class User {
         this.name = name;
         this.age = age;
         this.address = null;
-        this.phones = new HashSet<>();
+        this.phones = new ArrayList<>();
     }
 
     public long getId() {
@@ -70,11 +71,11 @@ public class User {
         this.id = id;
     }
 
-    public Set<Phone> getUserPhones() {
+    public List<Phone> getPhones() {
         return phones;
     }
 
-    public void addUserPhones(Phone phone) {
+    public void addPhone(Phone phone) {
         phones.add(phone);
     }
 }

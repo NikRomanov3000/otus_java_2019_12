@@ -27,22 +27,20 @@ public class Main {
         UserDao userDao = new UserDaoHibernate(sessionManager);
         DbServiceUser dbServiceUser = new DbServiceUserImpl(userDao);
 
-        User nikita = new User(1,"Никита", 20);
-       nikita.addUserPhones(new Phone("88005553535"));
-       nikita.setUserAddress(new Address("Moscow"));
+        User nikita = new User(1, "Никита", 20);
 
         dbServiceUser.saveUser(nikita);
         Optional<User> users = dbServiceUser.getUser(1);
-/*
-        nikita.addUserPhones(new Phone("88005553535"));
+
+        nikita.addPhone(new Phone("88005553535"));
         nikita.setUserAddress(new Address("Moscow"));
         dbServiceUser.saveOrUpdate(nikita);
 
         users = dbServiceUser.getUser(1);
-*/
+
         sessionManager.close();
 
-        System.out.println(users.get().getName());
+        //System.out.println(users.get().getName());
     }
 
 }
