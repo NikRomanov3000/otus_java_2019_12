@@ -1,4 +1,4 @@
-package ru.otus.hw10.core.model;
+package ru.otus.hw11.core.model;
 
 import javax.persistence.*;
 

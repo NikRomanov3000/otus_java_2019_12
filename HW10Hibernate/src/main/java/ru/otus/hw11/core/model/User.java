@@ -1,10 +1,8 @@
-package ru.otus.hw10.core.model;
+package ru.otus.hw11.core.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "app_user")

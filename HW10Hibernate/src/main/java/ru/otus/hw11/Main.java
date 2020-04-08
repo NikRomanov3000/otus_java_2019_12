@@ -1,17 +1,17 @@
-package ru.otus.hw10;
+package ru.otus.hw11;
 
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.otus.hw10.core.dao.UserDao;
-import ru.otus.hw10.core.model.Address;
-import ru.otus.hw10.core.model.Phone;
-import ru.otus.hw10.core.model.User;
-import ru.otus.hw10.core.service.DbServiceUser;
-import ru.otus.hw10.core.service.DbServiceUserImpl;
-import ru.otus.hw10.hibernate.HibernateUtils;
-import ru.otus.hw10.hibernate.dao.UserDaoHibernate;
-import ru.otus.hw10.hibernate.sessionmanager.SessionManagerHibernate;
+import ru.otus.hw11.core.dao.UserDao;
+import ru.otus.hw11.core.model.Address;
+import ru.otus.hw11.core.model.Phone;
+import ru.otus.hw11.core.model.User;
+import ru.otus.hw11.core.service.DbServiceUser;
+import ru.otus.hw11.core.service.DbServiceUserImpl;
+import ru.otus.hw11.hibernate.HibernateUtils;
+import ru.otus.hw11.hibernate.dao.UserDaoHibernate;
+import ru.otus.hw11.hibernate.sessionmanager.SessionManagerHibernate;
 
 import java.util.Optional;
 

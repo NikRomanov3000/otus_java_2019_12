@@ -1,7 +1,7 @@
-package ru.otus.hw10.core.dao;
+package ru.otus.hw11.core.dao;
 
-import ru.otus.hw10.core.model.User;
-import ru.otus.hw10.core.sessionmanager.SessionManager;
+import ru.otus.hw11.core.model.User;
+import ru.otus.hw11.core.sessionmanager.SessionManager;
 
 import java.util.Optional;
 

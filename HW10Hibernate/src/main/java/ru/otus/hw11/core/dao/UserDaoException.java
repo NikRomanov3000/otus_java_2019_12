@@ -1,4 +1,4 @@
-package ru.otus.hw10.core.dao;
+package ru.otus.hw11.core.dao;
 
 public class UserDaoException extends RuntimeException {
     public UserDaoException(Exception ex) {
