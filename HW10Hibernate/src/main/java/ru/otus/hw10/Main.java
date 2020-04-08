@@ -40,7 +40,7 @@ public class Main {
 
         sessionManager.close();
 
-        //System.out.println(users.get().getName());
+        System.out.println(users.get().getUserAddress().getFull_address());
     }
 
 }

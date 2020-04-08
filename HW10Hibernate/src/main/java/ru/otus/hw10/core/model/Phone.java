@@ -6,15 +6,16 @@ import javax.persistence.*;
 @Table(name = "phone")
 public class Phone {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
     @Column(name = "phone")
     private String phone;
 
-    @ManyToOne
-    private User user;
+    @ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+    @JoinColumn(name="r_user_id")
+    private User app_user;
 
     public Phone() {
     }
@@ -36,10 +37,10 @@ public class Phone {
     }
 
     public User getUser() {
-        return user;
+        return app_user;
     }
 
     public void setUser(User user) {
-        this.user = user;
+        this.app_user = user;
     }
 }

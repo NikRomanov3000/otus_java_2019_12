@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "app_user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
@@ -21,11 +21,10 @@ public class User {
     private int age;
 
     @OneToOne(targetEntity = Address.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "r_address_id")
     private Address address;
 
-    @OneToMany(targetEntity = Phone.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="phone_id")
+    @OneToMany(targetEntity = Phone.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "app_user")
     private List<Phone> phones;
 
     public User() {
@@ -77,5 +76,6 @@ public class User {
 
     public void addPhone(Phone phone) {
         phones.add(phone);
+        phone.setUser(this);
     }
 }
