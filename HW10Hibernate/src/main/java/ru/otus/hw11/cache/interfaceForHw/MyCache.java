@@ -1,4 +1,4 @@
-package ru.otus.hw11.cache;
+package ru.otus.hw11.cache.interfaceForHw;
 
 public interface MyCache <K, V> {
     void put(K key, V value);
@@ -10,4 +10,6 @@ public interface MyCache <K, V> {
     void addListener(MyListener<K, V> listener);
 
     void removeListener(MyListener<K, V> listener);
+
+    int getCacheSize();
 }
