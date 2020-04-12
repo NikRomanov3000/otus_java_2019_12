@@ -27,15 +27,30 @@ public class User {
     @OneToMany(targetEntity = Phone.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "app_user")
     private List<Phone> phones;
 
+    @Column(name = "login")
+    private String login;
+
+    @Column(name = "password")
+    private String password;
+
     public User() {
     }
 
-    public User(long id, String name, int age) {
+    public User(long id, String name, String login, String password) {
         this.id = id;
         this.name = name;
-        this.age = age;
+        this.login = login;
+        this.password = password;
         this.address = null;
         this.phones = new ArrayList<>();
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public long getId() {

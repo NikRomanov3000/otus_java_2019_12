@@ -10,4 +10,6 @@ public interface UserDao {
     long saveUser(User user);
     long saveOrUpdate(User user);
     SessionManager getSessionManager();
+    Optional<User> findByLogin(String login);
+    Optional<User> findRandomUser();
 }
