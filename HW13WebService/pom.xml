@@ -94,7 +94,7 @@
                         </descriptorRefs>
                         <archive>
                             <manifest>
-                                <mainClass>ru.otus.hw10.Main</mainClass>
+                                <mainClass>ru.otus.Main</mainClass>
                             </manifest>
                         </archive>
                     </configuration>
