@@ -10,8 +10,7 @@ import ru.otus.core.sessionmanager.SessionManager;
 import ru.otus.hibernate.sessionmanager.DatabaseSessionHibernate;
 import ru.otus.hibernate.sessionmanager.SessionManagerHibernate;
 
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 
 public class UserDaoHibernate implements UserDao {
@@ -76,12 +75,21 @@ public class UserDaoHibernate implements UserDao {
 
     @Override
     public Optional<User> findRandomUser() {
-        Random r = new Random();
-        //return user.values().stream().skip(r.nextInt(users.size() - 1)).findFirst();
+        Random random = new Random();
+        int randomId = random.nextInt(10);
+        DatabaseSessionHibernate currentSession = sessionManager.getCurrentSession();
+        try {
+            return Optional.ofNullable(currentSession.getHibernateSession().find(User.class, randomId));
+        }catch (Exception ex) {
+            logger.error(ex.getMessage(), ex);
+        }
+        return Optional.empty();
+
     }
 
     @Override
     public SessionManager getSessionManager() {
         return sessionManager;
     }
+
 }
