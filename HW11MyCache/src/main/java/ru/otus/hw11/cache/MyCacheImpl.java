@@ -5,28 +5,31 @@ import org.slf4j.LoggerFactory;
 import ru.otus.hw11.cache.interfaceForHw.MyCache;
 import ru.otus.hw11.cache.interfaceForHw.MyListener;
 
-import java.util.Map;
-import java.util.WeakHashMap;
+import java.util.*;
 
 public class MyCacheImpl<K, V> implements MyCache<K, V> {
     private static final Logger logger = LoggerFactory.getLogger(MyCacheImpl.class);
 
     private Map<K, V> myWeakMap = new WeakHashMap<>();
-    private MyListener myListener=null;
+    private List<MyListener> myListener = new ArrayList<>();
     private final int MAP_LIMIT_SIZE = 100;
 
     @Override
-    public void put(K key, V value) {
-        if(!checkMaxSize()){
+    public boolean put(K key, V value) {
+        if (!checkMaxSize()) {
             myWeakMap.put(key, value);
-            listenerNotify(key, value, "put");
-        } else logger.error("Cache is full");
+            LastlistenerNotify(key, value, "put");
+            return true;
+        } else {
+            logger.error("Cache is full");
+            return false;
+        }
 
     }
 
     @Override
     public void remove(K key) {
-        listenerNotify(key, null, "remove");
+        LastlistenerNotify(key, null, "remove");
         myWeakMap.remove(key);
     }
 
@@ -36,38 +39,47 @@ public class MyCacheImpl<K, V> implements MyCache<K, V> {
     }
 
     @Override
-    public void addListener(MyListener<K, V> listener) {
-        if(!checkListener()){
-            myListener=listener;
-        } else{
+    public boolean addListener(MyListener<K, V> listener) {
+        if (!checkListener() && !checkMaxSize()) {
+            myListener.add(listener);
+            return true;
+        } else {
             logger.info("You already have a cache");
+            return false;
         }
     }
 
     @Override
     public void removeListener(MyListener<K, V> listener) {
-        myListener=null;
+        myListener.remove(listener);
     }
 
     @Override
-    public int getCacheSize(){
+    public int getCacheSize() {
         return myWeakMap.size();
     }
-    private boolean checkListener(){
-        if(myListener!=null){
+
+    private boolean checkListener() {
+        if (myListener.size() > 0 ) {
             return true;
         } else return false;
     }
 
-    private boolean checkMaxSize(){
-        if(myWeakMap.size()==MAP_LIMIT_SIZE){
+    private boolean checkMaxSize() {
+        if (myWeakMap.size() == MAP_LIMIT_SIZE) {
             return true;
         } else return false;
     }
 
-    private void listenerNotify(K key, V value, String action){
-        if(checkListener()){
-            myListener.notify(key, value, action);
+    private void LastlistenerNotify(K key, V value, String action) {
+        if (checkListener()) {
+            myListener.get(myListener.size()-1).notify(key, value, action);
+        }
+    }
+
+    private void listenerNotifyById(K key, V value, String action, int listenerId) {
+        if (checkListener()) {
+            myListener.get(listenerId).notify(key, value, action);
         }
     }
 }

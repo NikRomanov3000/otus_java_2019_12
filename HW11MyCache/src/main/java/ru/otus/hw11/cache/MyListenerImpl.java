@@ -8,10 +8,10 @@ public class MyListenerImpl<K, V> implements MyListener<K, V> {
     private static final Logger logger = LoggerFactory.getLogger(MyListenerImpl.class);
     @Override
     public void notify(K key, V value, String action) {
-        if(action=="put"){
+        if(action.equals("put")){
             logger.info("put value in MyCache. key:{}, value:{}",  key, value);
         }
-        if(action=="remove"){
+        if(action.equals("remove")){
             logger.info("remove value from MyCache. key:{}",  key);
         }
     }

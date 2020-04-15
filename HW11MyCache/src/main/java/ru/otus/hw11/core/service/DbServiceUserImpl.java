@@ -13,7 +13,7 @@ import java.util.Optional;
 public class DbServiceUserImpl implements DbServiceUser {
     private static Logger logger = LoggerFactory.getLogger(DbServiceUserImpl.class);
     private final UserDao userDao;
-    private MyCache cache = new MyCacheImpl();
+    private MyCache<Long, Optional<User>> cache = new MyCacheImpl<>();
 
     public DbServiceUserImpl(UserDao userDao) {
         this.userDao = userDao;
@@ -29,7 +29,7 @@ public class DbServiceUserImpl implements DbServiceUser {
                     userOptional = userDao.findById(id);
                     cache.put(id, userOptional);
                 } else {
-                    userOptional = (Optional<User>) cache.get(id);
+                    userOptional = cache.get(id);
                 }
                 logger.info("user: {}", userOptional.orElse(null));
                 return userOptional;
@@ -48,7 +48,9 @@ public class DbServiceUserImpl implements DbServiceUser {
             try {
                 long userId = userDao.saveUser(user);
                 sessionManager.commitSession();
-
+                if (checkCache(userId) == null) {
+                    cache.put(userId, Optional.ofNullable(user));
+                }
                 logger.info("created user: {}", userId);
                 return userId;
             } catch (Exception ex) {
@@ -66,7 +68,12 @@ public class DbServiceUserImpl implements DbServiceUser {
             try {
                 long userId = userDao.saveOrUpdate(user);
                 sessionManager.commitSession();
-
+                if (checkCache(userId) == null) {
+                    cache.put(userId, Optional.ofNullable(user));
+                } else {
+                    cache.remove(userId);
+                    cache.put(userId, Optional.ofNullable(user));
+                }
                 logger.info("updated user: {}", userId);
                 return userId;
             } catch (Exception ex) {
