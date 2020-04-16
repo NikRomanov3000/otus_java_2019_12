@@ -6,6 +6,8 @@ import java.util.Optional;
 
 public interface DbServiceUser {
     long saveUser(User user);
-    Optional<User> getUser(long id);
+    Optional<User> getUserById(long id);
     long saveOrUpdate(User user);
+    Optional<User> getUserByLogin (String login);
+    Optional<User> getRandomUser();
 }

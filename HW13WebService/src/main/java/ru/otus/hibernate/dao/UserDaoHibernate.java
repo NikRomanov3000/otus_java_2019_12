@@ -22,17 +22,6 @@ public class UserDaoHibernate implements UserDao {
     }
 
     @Override
-    public Optional<User> findById(long id) {
-        DatabaseSessionHibernate currentSession = sessionManager.getCurrentSession();
-        try {
-            return Optional.ofNullable(currentSession.getHibernateSession().find(User.class, id));
-        } catch (Exception ex) {
-            logger.error(ex.getMessage(), ex);
-        }
-        return Optional.empty();
-    }
-
-    @Override
     public long saveUser(User user) {
         DatabaseSessionHibernate currentSession = sessionManager.getCurrentSession();
         try {
@@ -62,15 +51,51 @@ public class UserDaoHibernate implements UserDao {
         }
     }
 
-    @Override
-    public Optional<User> findByLogin(String login) {
+    public List<User> findAllRecords() {
         DatabaseSessionHibernate currentSession = sessionManager.getCurrentSession();
         try {
-            return Optional.ofNullable(currentSession.getHibernateSession().find(User.class, login));
+            String sql = "From " + User.class.getSimpleName();
+            System.out.println("sql = " + sql);
+
+            List<User> users = currentSession.getHibernateSession().createQuery(sql).list();
+            return users;
+
+        } catch (Exception ex) {
+            logger.error(ex.getMessage(), ex);
+        }
+        return null;
+    }
+
+    @Override
+    public Optional<User> findById(long id) {
+        DatabaseSessionHibernate currentSession = sessionManager.getCurrentSession();
+        try {
+            return Optional.ofNullable(currentSession.getHibernateSession().find(User.class, id));
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);
         }
         return Optional.empty();
+    }
+
+    @Override
+    public Optional<User> findByLogin(String login) {
+        List<User> users = findAllRecords();
+        if(users!=null){
+            for(User user : users){
+                if(user.getLogin().equals(login)){
+                    return Optional.ofNullable(user);
+                }
+            }
+        }
+        return Optional.empty();
+        /*DatabaseSessionHibernate currentSession = sessionManager.getCurrentSession();
+        try {
+            return Optional.ofNullable(currentSession.getHibernateSession().find(User.class, login));
+
+        } catch (Exception ex) {
+            logger.error(ex.getMessage(), ex);
+        }
+        return Optional.empty();*/
     }
 
     @Override

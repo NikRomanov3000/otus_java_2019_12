@@ -37,14 +37,15 @@ public class Main {
                 User.class, Address.class, Phone.class);
 
         SessionManagerHibernate sessionManager = new SessionManagerHibernate(sessionFactory);
+
         UserDao userDao = new UserDaoHibernate(sessionManager);
         DbServiceUser dbServiceUser = new DbServiceUserImpl(userDao);
         inMemoryUsers(dbServiceUser);
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
         TemplateProcessor templateProcessor = new TemplateProcessorImpl(TEMPLATES_DIR);
-        UserAuthService authService = new UserAuthServiceImpl(userDao);
+        UserAuthService authService = new UserAuthServiceImpl(dbServiceUser);
         UsersWebServer usersWebServer = new UsersWebServerWithFilterBasedSecurity(WEB_SERVER_PORT,
-                authService, userDao, gson, templateProcessor);
+                authService, dbServiceUser, gson, templateProcessor);
 
         usersWebServer.start();
         usersWebServer.join();

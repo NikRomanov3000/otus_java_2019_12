@@ -19,11 +19,43 @@ public class DbServiceUserImpl implements DbServiceUser {
     }
 
     @Override
-    public Optional<User> getUser(long id) {
+    public Optional<User> getUserById(long id) {
         try (SessionManager sessionManager = userDao.getSessionManager()) {
             sessionManager.beginSession();
             try {
                 Optional<User> userOptional = userDao.findById(id);
+                logger.info("user: {}", userOptional.orElse(null));
+                return userOptional;
+            } catch (Exception e) {
+                logger.error(e.getMessage(), e);
+                sessionManager.rollbackSession();
+            }
+            return Optional.empty();
+        }
+    }
+
+    @Override
+    public Optional<User> getUserByLogin (String login){
+        try (SessionManager sessionManager = userDao.getSessionManager()) {
+            sessionManager.beginSession();
+            try {
+                Optional<User> userOptional = userDao.findByLogin(login);
+                logger.info("user: {}", userOptional.orElse(null));
+                return userOptional;
+            } catch (Exception e) {
+                logger.error(e.getMessage(), e);
+                sessionManager.rollbackSession();
+            }
+            return Optional.empty();
+        }
+    }
+
+    @Override
+    public Optional<User> getRandomUser() {
+        try (SessionManager sessionManager = userDao.getSessionManager()) {
+            sessionManager.beginSession();
+            try {
+                Optional<User> userOptional = userDao.findRandomUser();
                 logger.info("user: {}", userOptional.orElse(null));
                 return userOptional;
             } catch (Exception e) {
@@ -68,4 +100,5 @@ public class DbServiceUserImpl implements DbServiceUser {
             }
         }
     }
+
 }

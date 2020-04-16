@@ -35,10 +35,10 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String name = request.getParameter(PARAM_LOGIN);
+        String login = request.getParameter(PARAM_LOGIN);
         String password = request.getParameter(PARAM_PASSWORD);
 
-        if(userAuthService.authenticate(name, password)){
+        if(userAuthService.authenticate(login, password)){
             HttpSession session = request.getSession();
             session.setMaxInactiveInterval(MAX_INACTIVE_INTERVAL);
             response.sendRedirect("/users");
