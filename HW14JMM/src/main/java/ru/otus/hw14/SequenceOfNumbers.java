@@ -1,4 +1,4 @@
-package ru.otus.hw13;
+package ru.otus.hw14;
 
 public class SequenceOfNumbers {
     private final int LIMIT = 10;
