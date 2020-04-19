@@ -65,6 +65,7 @@ public class Main {
         users.add(new User(8L, "Джанет Вэрни", "user6", "11111"));
         users.add(new User(9L, "Брэндон Смит", "user7", "11111"));
         users.add(new User(10L, "Никита Романов", "nromanov", "123"));
+        users.add(new User(11L, "Даниил Гладков", "oxisgen", "qwerty123"));
 
         for (User user : users) {
             dbServiceUser.saveUser(user);
