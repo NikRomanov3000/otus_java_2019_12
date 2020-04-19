@@ -1,5 +1,6 @@
 package ru.otus.hibernate.dao;
 
+import org.apache.commons.math3.random.RandomDataGenerator;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -88,20 +89,15 @@ public class UserDaoHibernate implements UserDao {
             }
         }
         return Optional.empty();
-        /*DatabaseSessionHibernate currentSession = sessionManager.getCurrentSession();
-        try {
-            return Optional.ofNullable(currentSession.getHibernateSession().find(User.class, login));
-
-        } catch (Exception ex) {
-            logger.error(ex.getMessage(), ex);
-        }
-        return Optional.empty();*/
     }
 
     @Override
     public Optional<User> findRandomUser() {
         Random random = new Random();
-        int randomId = random.nextInt(10);
+        long leftLimit = 1L;
+        long rightLimit = 10L;
+        long randomId = new RandomDataGenerator().nextLong(leftLimit, rightLimit);
+
         DatabaseSessionHibernate currentSession = sessionManager.getCurrentSession();
         try {
             return Optional.ofNullable(currentSession.getHibernateSession().find(User.class, randomId));
