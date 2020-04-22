@@ -39,13 +39,13 @@ public class SequenceOfNumbers {
     private void synchronizedShowNumbers() {
         while (continueCondition) {
             for (int i : numbers) {
-
                 synchronized (monitor) {
                     showNumber(i);
                     monitor.notify();
 
                         try {
                             monitor.wait();
+                            continueCondition=false;
                         } catch (InterruptedException ex) {
                             Thread.currentThread().interrupt();
                             ex.printStackTrace();
@@ -53,7 +53,7 @@ public class SequenceOfNumbers {
                     }
 
             }
-            continueCondition=false;
+
         }
     }
 
