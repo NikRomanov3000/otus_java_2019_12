@@ -1,9 +1,10 @@
 package ru.otus.hw14;
 
 public class SequenceOfNumbers {
-    private final int LIMIT = 10;
-    int[] numbers = new int[2 * LIMIT - 1];
+    private static final int LIMIT = 10;
+    private int[] numbers = new int[2 * LIMIT - 1];
     static final Object monitor = new Object();
+    private boolean continueCondition = true;
 
     public SequenceOfNumbers() {
         for (int i = 0; i < LIMIT; i++) {
@@ -14,14 +15,14 @@ public class SequenceOfNumbers {
         }
     }
 
-    public void simpleShowNumbers(){
+    public void simpleShowNumbers() {
         System.out.println();
-        for(int i : numbers){
+        for (int i : numbers) {
             showNumber(i);
         }
     }
 
-    public void twoThreads(){
+    public void twoThreads() {
         Thread thread1 = new Thread(this::synchronizedShowNumbers);
         Thread thread2 = new Thread(this::synchronizedShowNumbers);
 
@@ -36,16 +37,25 @@ public class SequenceOfNumbers {
     }
 
     private void synchronizedShowNumbers() {
-       for(int i : numbers){
-            synchronized (monitor) {
-               showNumber(i);
-                monitor.notify();
-                try {
-                    monitor.wait();
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                }
+        while (continueCondition) {
+            for (int i : numbers) {
+
+                synchronized (monitor) {
+                    showNumber(i);
+                    monitor.notify();
+
+                        try {
+                            monitor.wait();
+                        } catch (InterruptedException ex) {
+                            Thread.currentThread().interrupt();
+                            ex.printStackTrace();
+                        }
+                    }
+
             }
+            continueCondition=false;
         }
     }
+
+
 }
