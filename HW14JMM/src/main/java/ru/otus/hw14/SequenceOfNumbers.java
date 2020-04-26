@@ -7,14 +7,6 @@ public class SequenceOfNumbers {
     private int lastNumber;
     private boolean sequenceChecker = false;
 
-    public int getLastNumber() {
-        return lastNumber;
-    }
-
-    public boolean isSequenceChecker() {
-        return sequenceChecker;
-    }
-
     public SequenceOfNumbers() {
         for (int i = 0; i < LIMIT; i++) {
             numbers[i] = i + 1;
@@ -41,7 +33,7 @@ public class SequenceOfNumbers {
     }
 
     private void showNumber(int i) {
-        System.out.print(i);
+        System.out.println(Thread.currentThread().getName() + ": " + i);
     }
 
     private void synchronizedShowNumbers() {
