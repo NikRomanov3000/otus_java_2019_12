@@ -55,6 +55,7 @@ public class WebConfig implements WebMvcConfigurer {
         viewResolver.setCharacterEncoding("UTF-8");
         return viewResolver;
     }
+
     @Bean
     public SessionFactory addSessionFactory(){
         SessionFactory sessionFactory = HibernateUtils.buildSessionFactory(HIBERNATE_CFG_XML_FILE_RESOURCE,

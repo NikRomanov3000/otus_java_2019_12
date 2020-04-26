@@ -38,6 +38,8 @@
             </tr>
         </thead>
         <tbody>
+        <!--/*@thymesVar id="user" type="ru.otus.core.model.User"*/-->
+
             <tr th:each="user : ${users}">
                 <td th:text="${user.id}">1</td>
                 <td th:text="${user.name}">John Doe</td>
@@ -47,9 +49,9 @@
     <a th:href="@{/user/create}" href="userCreate.html">New user</a>
 
     <br/><br/>
-    <h3>Greetings:</h3>
-    <a th:href="@{/hello?name=Vasya}">Old school greeting</a>
-    <a th:href="@{/hello/Jone}">REST API style greeting</a>
+    <h3>Some true REST APIs:</h3>
+    <a th:href="@{/user}">Get all in JSON</a>
+
 
 </body>
 </html>
