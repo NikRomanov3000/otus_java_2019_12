@@ -4,8 +4,7 @@ public class SequenceOfNumbers {
     private static final int LIMIT = 10;
     private int[] numbers = new int[2 * LIMIT - 1];
     static final Object monitor = new Object();
-    private int lastNumber;
-    private boolean sequenceChecker = false;
+    private String currentThreadName;
 
     public SequenceOfNumbers() {
         for (int i = 0; i < LIMIT; i++) {
@@ -14,7 +13,6 @@ public class SequenceOfNumbers {
                 numbers[numbers.length - (i + 1)] = numbers[i];
             }
         }
-        lastNumber = numbers[0];
     }
 
     public void simpleShowNumbers() {
@@ -40,21 +38,11 @@ public class SequenceOfNumbers {
         for (int i : numbers) {
             synchronized (monitor) {
                 showNumber(i);
+                currentThreadName = Thread.currentThread().getName();
                 monitor.notify();
-
                 try {
-                    while (lastNumber == i) {
+                    while (currentThreadName.equals(Thread.currentThread().getName())) {
                         monitor.wait();
-
-                        if (sequenceChecker == false) {
-                            lastNumber++;
-                            if (lastNumber == LIMIT + 1) {
-                                sequenceChecker = true;
-                            }
-                        }
-                        if (sequenceChecker == true) {
-                            lastNumber--;
-                        }
                     }
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
