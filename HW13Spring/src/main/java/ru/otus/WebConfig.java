@@ -1,6 +1,5 @@
 package ru.otus;
 
-import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,16 +11,12 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
-import ru.otus.core.model.Address;
-import ru.otus.core.model.Phone;
-import ru.otus.core.model.User;
-import ru.otus.hibernate.HibernateUtils;
+
 
 @Configuration
 @ComponentScan
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
-    private static final String HIBERNATE_CFG_XML_FILE_RESOURCE = "hibernate.cfg.xml";
     private final ApplicationContext applicationContext;
 
     public WebConfig(ApplicationContext applicationContext) {
@@ -54,13 +49,6 @@ public class WebConfig implements WebMvcConfigurer {
         viewResolver.setOrder(1);
         viewResolver.setCharacterEncoding("UTF-8");
         return viewResolver;
-    }
-
-    @Bean
-    public SessionFactory addSessionFactory(){
-        SessionFactory sessionFactory = HibernateUtils.buildSessionFactory(HIBERNATE_CFG_XML_FILE_RESOURCE,
-                User.class, Address.class, Phone.class);
-        return  sessionFactory;
     }
 
     @Override
