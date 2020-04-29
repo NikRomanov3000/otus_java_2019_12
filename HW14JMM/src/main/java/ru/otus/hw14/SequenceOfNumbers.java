@@ -3,8 +3,8 @@ package ru.otus.hw14;
 public class SequenceOfNumbers {
     private static final int LIMIT = 10;
     private int[] numbers = new int[2 * LIMIT - 1];
-    static final Object monitor = new Object();
-    private String currentThreadName;
+    private static final Object monitor = new Object();
+    private String currentThreadName="Thread-1";
 
     public SequenceOfNumbers() {
         for (int i = 0; i < LIMIT; i++) {
@@ -12,13 +12,6 @@ public class SequenceOfNumbers {
             if (numbers[i] != LIMIT) {
                 numbers[numbers.length - (i + 1)] = numbers[i];
             }
-        }
-    }
-
-    public void simpleShowNumbers() {
-        System.out.println();
-        for (int i : numbers) {
-            showNumber(i);
         }
     }
 
@@ -37,9 +30,6 @@ public class SequenceOfNumbers {
     private void synchronizedShowNumbers() {
         for (int i : numbers) {
             synchronized (monitor) {
-                showNumber(i);
-                currentThreadName = Thread.currentThread().getName();
-                monitor.notify();
                 try {
                     while (currentThreadName.equals(Thread.currentThread().getName())) {
                         monitor.wait();
@@ -48,6 +38,9 @@ public class SequenceOfNumbers {
                     Thread.currentThread().interrupt();
                     ex.printStackTrace();
                 }
+                showNumber(i);
+                monitor.notify();
+                currentThreadName = Thread.currentThread().getName();
             }
         }
     }
