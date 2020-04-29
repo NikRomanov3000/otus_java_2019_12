@@ -11,15 +11,12 @@ import ru.otus.core.model.User;
 import ru.otus.hibernate.HibernateUtils;
 
 @Configuration
-@ComponentScan
-@EnableWebMvc
 public class DatabaseConfig {
     private static final String HIBERNATE_CFG_XML_FILE_RESOURCE = "hibernate.cfg.xml";
 
     @Bean
     public SessionFactory addSessionFactory(){
-        SessionFactory sessionFactory = HibernateUtils.buildSessionFactory(HIBERNATE_CFG_XML_FILE_RESOURCE,
+        return  HibernateUtils.buildSessionFactory(HIBERNATE_CFG_XML_FILE_RESOURCE,
                 User.class, Address.class, Phone.class);
-        return  sessionFactory;
     }
 }

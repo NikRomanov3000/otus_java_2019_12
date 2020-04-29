@@ -17,11 +17,8 @@ public class TrueRestController {
         this.repository = repository;
     }
 
-    @GetMapping({"/user"})
-    public String userListView(Model model) {
-        List<User> users = repository.findAll();
-        model.addAttribute("users", users);
-        return new Gson().toJson(users);
+    @GetMapping({"/api/user"})
+    public List<User> userListView(Model model) {
+        return repository.findAll();
     }
-
 }
