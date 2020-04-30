@@ -2,7 +2,7 @@ package ru.otus.hw14;
 
 public class SequenceOfNumbers {
     private static final int LIMIT = 10;
-    private int[] numbers = new int[2 * LIMIT - 1];
+    private final int[] numbers = new int[2 * LIMIT - 1];
     private static final Object monitor = new Object();
     private String currentThreadName="Thread-1";
 
