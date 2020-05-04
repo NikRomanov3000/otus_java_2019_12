@@ -8,7 +8,7 @@
     <artifactId>hw13.1-myContext</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>SpringNikita</name>
 
     <properties>
@@ -25,6 +25,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.11</version>
+        </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -118,26 +123,6 @@
                             </goals>
                         </execution>
                     </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>3.2.2</version>
-                    <executions>
-                        <execution>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>war</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <webResources>
-                            <resource>
-                                <directory>src/main/resources</directory>
-                            </resource>
-                        </webResources>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>

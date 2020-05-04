@@ -5,6 +5,8 @@ import myContext.ru.otus.appcontainer.api.AppComponentsContainer;
 import myContext.ru.otus.config.AppConfig;
 import myContext.ru.otus.services.GameProcessor;
 
+import java.lang.reflect.Method;
+
 /*
 В классе AppComponentsContainerImpl реализовать обработку, полученной в конструкторе конфигурации,
 основываясь на разметке аннотациями из пакета appcontainer. Так же необходимо реализовать методы getAppComponent.
@@ -19,5 +21,6 @@ public class App {
         AppComponentsContainer container = new AppComponentsContainerImpl(AppConfig.class);
         GameProcessor gameProcessor = container.getAppComponent(GameProcessor.class);
         gameProcessor.startGame();
+
     }
 }
