@@ -59,8 +59,7 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
         try {
             configInstance = configClass.getConstructor().newInstance();
         } catch (Exception ex) {
-            AppComponentsContainerException exception = new AppComponentsContainerException(ex);
-            exception.printStackTrace();
+            throw new AppComponentsContainerException(ex);
         }
         for (Method method : sortMethods) {
             Parameter[] parameters = method.getParameters();
@@ -68,14 +67,9 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
             for (int i = 0; i < parameters.length; i++) {
                 try {
                     Object someArg = getAppComponent(parameters[i].getType());
-                    if (someArg != null) {
-                        args[i] = someArg;
-                    } else {
-                        throw new RuntimeException("Cannot find Bean");
-                    }
+                    args[i] = someArg;
                 } catch (Exception ex) {
-                    AppComponentsContainerException exception = new AppComponentsContainerException(ex);
-                    exception.printStackTrace();
+                    throw new AppComponentsContainerException(ex);
                 }
             }
             if (configInstance != null) {
