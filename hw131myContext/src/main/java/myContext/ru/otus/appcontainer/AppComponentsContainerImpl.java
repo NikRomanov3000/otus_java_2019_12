@@ -77,8 +77,7 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
                     appComponentsByName.put(method.getAnnotation(AppComponent.class).name(), method.invoke(configInstance, args));
                     appComponents.add(method.invoke(configInstance, args));
                 } catch (Exception ex) {
-                    AppComponentsContainerException exception = new AppComponentsContainerException(ex);
-                    exception.printStackTrace();
+                    throw new AppComponentsContainerException(ex);
                 }
             }
         }
