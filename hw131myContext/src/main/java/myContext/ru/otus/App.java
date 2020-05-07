@@ -4,6 +4,7 @@ import myContext.ru.otus.appcontainer.AppComponentsContainerImpl;
 import myContext.ru.otus.appcontainer.api.AppComponentsContainer;
 import myContext.ru.otus.config.AppConfig;
 import myContext.ru.otus.services.GameProcessor;
+import myContext.ru.otus.services.GameProcessorImpl;
 
 import java.lang.reflect.Method;
 
@@ -19,7 +20,8 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         AppComponentsContainer container = new AppComponentsContainerImpl(AppConfig.class);
-        GameProcessor gameProcessor = container.getAppComponent(GameProcessor.class);
+        //GameProcessor gameProcessor = container.getAppComponent(GameProcessor.class);
+        GameProcessor gameProcessor = container.getAppComponent(GameProcessorImpl.class);
         gameProcessor.startGame();
 
     }
