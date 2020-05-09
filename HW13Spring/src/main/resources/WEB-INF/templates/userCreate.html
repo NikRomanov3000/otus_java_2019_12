@@ -29,18 +29,13 @@
     <h1>New User:</h1>
 
     <div class="row">
-
     </div>
 
- <!--   <div class="row">
-        <label for="holder-input-id">Id:</label>
-        <input id="holder-input-id" name="id" type="text" th:value="${user.id}" value="John Doe"/>
-    </div> -->
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+    <p>Age: <input type="number" th:field="*{age}" /></p>
+    <p>Login: <input type="text" th:field="*{login}" /></p>
+    <p>Password: <input type="text" th:field="*{password}" /></p>
 
-    <div class="row">
-        <label for="holder-input-name">Name:</label>
-        <input id="holder-input-name" name="name" type="text" th:value="${user.name}" value="John Doe"/>
-    </div>
 
     <div class="row">
         <button type="submit">Save</button>

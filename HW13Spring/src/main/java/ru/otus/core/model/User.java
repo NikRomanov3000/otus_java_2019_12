@@ -43,14 +43,6 @@ public class User {
         this.phones = new ArrayList<>();
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
     public long getId() {
         return id;
     }
@@ -71,16 +63,32 @@ public class User {
         this.age = age;
     }
 
-    public Address getUserAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setUserAddress(Address userAddress) {
-        this.address = userAddress;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setPhones(List<Phone> phones) {
+        this.phones = phones;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<Phone> getPhones() {

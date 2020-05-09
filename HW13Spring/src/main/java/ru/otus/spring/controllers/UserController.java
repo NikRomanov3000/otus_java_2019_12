@@ -23,9 +23,7 @@ public class UserController {
 
     @GetMapping({"/user/list"})
     public String userListView(Model model) {
-        List<User> users = repository.findAll();
-        //   Optional<User> user = repository.getUserById(5);
-        //    model.addAttribute("users", user.get());
+        List<User> users = repository.findAll();       ;
         model.addAttribute("users", users);
         return "userList.html";
     }
