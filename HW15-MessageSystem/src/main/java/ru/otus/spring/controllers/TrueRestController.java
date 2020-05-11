@@ -1,6 +1,5 @@
 package ru.otus.spring.controllers;
 
-import com.google.gson.Gson;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +18,6 @@ public class TrueRestController {
 
     @GetMapping({"/api/user"})
     public List<User> userListView(Model model) {
-        return repository.findAll();
+        return repository.getAllUsers();
     }
 }

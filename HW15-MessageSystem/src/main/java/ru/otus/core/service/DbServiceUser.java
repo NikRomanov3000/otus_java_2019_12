@@ -11,5 +11,5 @@ public interface DbServiceUser {
     long saveOrUpdate(User user);
     Optional<User> getUserByLogin (String login);
     Optional<User> getRandomUser();
-    List<User> findAll();
+    List<User> getAllUsers();
 }

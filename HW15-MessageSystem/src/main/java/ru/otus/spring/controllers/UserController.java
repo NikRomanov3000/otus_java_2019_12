@@ -5,13 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 import ru.otus.core.model.User;
 import ru.otus.core.service.DbServiceUser;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -23,16 +21,16 @@ public class UserController {
 
     @GetMapping({"/user/list"})
     public String userListView(Model model) {
-        List<User> users = repository.findAll();       ;
+        List<User> users = repository.getAllUsers();       ;
         model.addAttribute("users", users);
-        return "userList.html";
+        return "userList";
     }
 
     @GetMapping("/user/create")
     public String userCreateView(Model model) {
         User someTestUser = new User(666L, "Eddie", "IronMaidenLogin", "666");
         model.addAttribute("user", someTestUser);
-        return "userCreate.html";
+        return "userCreate";
     }
 
     @PostMapping("/user/save")

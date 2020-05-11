@@ -53,7 +53,7 @@ public class DbServiceUserImpl implements DbServiceUser {
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User> getAllUsers() {
         try (SessionManager sessionManager = userDao.getSessionManager()) {
             sessionManager.beginSession();
             try {
