@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class PostUsersDataResponseHandler implements RequestHandler {
-    private static final Logger logger = LoggerFactory.getLogger(GetUserDataResponseHandler.class);
+    private static final Logger logger = LoggerFactory.getLogger(PostUsersDataResponseHandler.class);
     private final DbServiceUser dbService;
 
     public PostUsersDataResponseHandler(DbServiceUser dbService) {
@@ -24,12 +24,11 @@ public class PostUsersDataResponseHandler implements RequestHandler {
     @Override
     public Optional<Message> handle(Message msg) {
         logger.info("new message:{}", msg);
-        try{
-            User userData =  Serializers.deserialize(msg.getPayload(), User.class);
-            UUID sourceMessageId = msg.getSourceMessageId().orElseThrow(() -> new RuntimeException("Not found sourceMsg for message:" + msg.getId()));
+        try {
+            User userData = Serializers.deserialize(msg.getPayload(), User.class);
             dbService.saveUser(userData);
             return Optional.of(new Message(msg.getTo(), msg.getFrom(), msg.getId(), MessageType.ADD_USER.getValue(), Serializers.serialize(userData.getId())));
-        }catch (Exception ex){
+        } catch (Exception ex) {
             logger.error("msg:" + msg, ex);
             return Optional.of(new Message(msg.getTo(), msg.getFrom(), msg.getId(), MessageType.ADD_USER.getValue(), Serializers.serialize(ex)));
         }

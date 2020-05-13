@@ -19,10 +19,7 @@ public class GetAllUsersDataRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Message> handle(Message msg) {
-        //Возможно тут надо как-то десерелизовать сообщние, но я не очень понимаю, что нужно из него доставать,
-        // если в случае с GetUserDataRequestHandler нужен был id, то тут нам просто нужны все
         List<User> data = dbService.getAllUsers();
         return Optional.of(new Message(msg.getTo(), msg.getFrom(), msg.getId(), MessageType.ALL_USERS_DATA.getValue(), Serializers.serialize(data)));
-
     }
 }
